@@ -121,13 +121,13 @@ Configure the repository:
     deb [arch=amd64] https://ltb-project.org/debian/bullseye bullseye main
 
 
-The public key can be downloaded here: `GPG key <resources/RPM-GPG-KEY-LTB-project>`_.
+The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
 
 To import this key: 
 
 .. code-block:: console
 
-    # curl https://ltb-project.org/lib/RPM-GPG-KEY-LTB-project | apt-key add -
+    # curl https://ltb-project.org/_static/RPM-GPG-KEY-LTB-project | apt-key add -
 
 Then update:
 
