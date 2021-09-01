@@ -1,443 +1,144 @@
-===================================
-OpenLDAP DEBs [LDAP Tool Box (LTB)]
-===================================
+*************
+OpenLDAP DEBs
+*************
+
+Introduction
+============
+
+LTB project provides 5 Debian packages:
+
+:openldap-ltb:                   main OpenLDAP package, including slapd-cli,
+                                 systemd service, and many openldap core modules
+                                 (see below)
+:openldap-ltb-contrib-overlays:  additional openldap modules (see the list below)
+:openldap-ltb-dbg:               debug symbols for openldap
+:openldap-ltb-explockout:        additional overlay *exponential lockout*
+:openldap-ltb-mdb-utils:         additional utilities for the mdb database backend (mdb_*)
+
+.. NOTE::
+    LTB team tries to keep packages up to date with the latest OpenLDAP version.
 
-.. container::
-   :name: dokuwiki__site
+.. TIP::
+    Every backend and overlay is compiled as a module.
 
-   .. container:: site dokuwiki mode_show tpl_bootstrap3
-      :name: dokuwiki__top
+The main OpenLDAP package includes:
 
-      .. container::
-         :name: dokuwiki__header
+* backends:
 
-         .. container:: container-fluid
+  * **mdb**: main database storage
+  * **ldap**: LDAP proxy
+  * **meta**: agregation of multiple LDAP proxies
+  * **sock**
 
-            .. container:: navbar-header
+* SSL/TLS with OpenSSL
+* SASL (including SASL passwords)
+* SLAPI support
+* CRYPT password
+* support of tcp-wrappers
+* support of reverse lookups of client hostnames
+* argon2 hash scheme
+* schema expose (SLAP_SCHEMA_EXPOSE flag for hidden schema elements)
+* load-balancer (compiled as a module)
+* slapd-cli project, including slapd-cli tool,
+  and systemd services for OpenLDAP and load-balancer
+* logrotate script
+* all standard overlays:
 
-               |LDAP Tool Box (LTB)|
+  * **accesslog**: In-Directory Access Logging
+  * **auditlog**: Audit Logging
+  * **autoca**: Automatic Certificate Authority
+  * **collect**: Collect
+  * **constraint**: Attribute Constraint
+  * **dds**: Dynamic Directory Services
+  * **deref**: Dereference
+  * **dyngroup**: Dynamic Group
+  * **dynlist**: Dynamic List
+  * **homedir**: Home Directory Management
+  * **memberof**: Reverse Group Membership
+  * **otp**: OTP 2-factor authentication
+  * **ppolicy**: Password Policy
+  * **proxycache**: Proxy Cache
+  * **refint**: Referential Integrity
+  * **remoteauth**: Deferred Authentication
+  * **retcode**: Return Code testing
+  * **rwm**: Rewrite/Remap
+  * **seqmod**: Sequential Modify
+  * **sssvlv**: ServerSideSort/VLV
+  * **syncprov**: Syncrepl Provider
+  * **translucent**: Translucent Proxy
+  * **unique**: Attribute Uniqueness
+  * **valsort**: Value Sorting
 
-            .. container:: collapse navbar-collapse
 
-               -  `Home`_
-               -  `Documentation`_
-               -  `Download`_
-               -  `Community`_
+The contrib-overlay package includes these additional overlays:
 
-               .. container:: navbar-right
+* **autogroup**: automatic updates of group memberships which meet the requirements
+  of any filter contained in the group definition.
+* **lastbind**: logs the last user authentication
+* **noopsrch**: "no operation search": do a search in dry-run
+* **nssov**: handles NSS lookup requests through a local Unix Domain socket
+* **pw-pbkdf2**: allows PBKDF2 hash scheme
+* **pw-sha2**: allow SHA2 hash scheme
+* **smbk5pwd**: update Kerberos keys and Samba password hashes (without Heimdal Kerberos support)
+* **ppm**: extend the password policy with new criteria
+* **variant**: share values between entries
+* **vc**: implements the LDAP "Verify Credentials" extended operation
 
-                  .. container:: no
+The installation lies under ``/usr/local/openldap``, in order to avoid conflicts with existing OpenLDAP installation. In particular, we do not interfere with the ldap system libraries, which are linked in by many other programs.
 
-                     .. container:: ajax_qsearch JSpopup
-                        :name: qsearch__out
 
-                  -  `Login`_
+Installation
+============
 
-      .. container::
-         :name: dw__breadcrumbs
+APT repository
+--------------
 
-         --------------
+.. TIP::
+    You need to set up the repository for your version:
 
-         .. container:: breadcrumb
+    * buster (debian 10)
+    * bullseye (debian 11)
 
-            You are here:\ `Welcome on LDAP Tool Box project`_ »
-            `Documentation <../documentation>`__ » `OpenLDAP DEBs`_
+    For Ubuntu systems you can check which Debian release to choose in /etc/debian_version
 
-         --------------
 
-      documentation:openldap-deb
+Authorize downloading of packages in https repositories:
 
-      .. container::
-         :name: dw__msgarea
+.. code-block:: console
 
-      .. container:: main row
+    # apt install apt-transport-https
 
-         .. container:: panel panel-default
 
-            .. container:: page group panel-body
+Configure the repository: 
 
-               .. container:: pull-right hidden-print
+.. code-block:: console
 
-                  .. container::
-                     :name: dw__toc
+    # vi /etc/apt/sources.list.d/ltb-project.list
 
-                     .. rubric:: Table of Contents
-                        :name: table-of-contents
-                        :class: toggle
 
-                     .. container::
+::
 
-                        -  
+    deb [arch=amd64] https://ltb-project.org/debian/bullseye bullseye main
 
-                           .. container:: li
 
-                              `Introduction`_
+The public key can be downloaded here: `GPG key <resources/RPM-GPG-KEY-LTB-project>`_.
 
-                        -  
+To import this key: 
 
-                           .. container:: li
+.. code-block:: console
 
-                              `Installation`_
+    # curl https://ltb-project.org/lib/RPM-GPG-KEY-LTB-project | apt-key add -
 
-                           -  
+Then update:
 
-                              .. container:: li
+.. code-block:: console
 
-                                 `APT repository`_
+    # apt update
 
-               .. rubric:: OpenLDAP DEBs
-                  :name: openldap_debs
-                  :class: sectionedit1
+You are now ready to install:
 
-               .. container:: level1
+.. code-block:: console
 
-               .. rubric:: Introduction
-                  :name: introduction
-                  :class: sectionedit2
+    # apt install openldap-ltb
 
-               .. container:: level2
 
-                  LTB project provides 7 Debian packages:
-
-                  -  
-
-                     .. container:: li
-
-                        BerkeleyDB
-
-                  -  
-
-                     .. container:: li
-
-                        OpenLDAP
-
-                  -  
-
-                     .. container:: li
-
-                        OpenLDAP contributed overlays
-
-                  -  
-
-                     .. container:: li
-
-                        Check password policy module - check_password
-                        (deprecated)
-
-                  -  
-
-                     .. container:: li
-
-                        Password policy module - ppm
-
-                  -  
-
-                     .. container:: li
-
-                        Overlay explockout
-
-                  -  
-
-                     .. container:: li
-
-                        OpenLDAP debuginfo
-
-                  We try to keep package up to date with the latest
-                  OpenLDAP version.
-
-                  Our packages include:
-
-                  -  
-
-                     .. container:: li
-
-                        SSL/TLS with OpenSSL
-
-                  -  
-
-                     .. container:: li
-
-                        SASL (including SASL passwords)
-
-                  -  
-
-                     .. container:: li
-
-                        All official overlays
-
-                  -  
-
-                     .. container:: li
-
-                        HDB/BDB backend
-
-                  -  
-
-                     .. container:: li
-
-                        MDB backend
-
-                  -  
-
-                     .. container:: li
-
-                        LDAP backend
-
-                  -  
-
-                     .. container:: li
-
-                        META backend
-
-                  -  
-
-                     .. container:: li
-
-                        SOCK backend
-
-                  -  
-
-                     .. container:: li
-
-                        SLAPI support
-
-                  -  
-
-                     .. container:: li
-
-                        CRYPT password
-
-                  -  
-
-                     .. container:: li
-
-                        `LTB-project OpenLDAP init script`_
-
-                  -  
-
-                     .. container:: li
-
-                        `LTB project check_password`_
-
-                  -  
-
-                     .. container:: li
-
-                        `LTB project ppm`_
-
-                  -  
-
-                     .. container:: li
-
-                        `Overlay explockout`_
-
-                  -  
-
-                     .. container:: li
-
-                        Logrotate script
-
-                  -  
-
-                     .. container:: li
-
-                        Preconfigured DB_CONFIG
-
-                  -  
-
-                     .. container:: li
-
-                        MDB utils
-
-                  -  
-
-                     .. container:: li
-
-                        Schema expose (SLAP_SCHEMA_EXPOSE)
-
-                  -  
-
-                     .. container:: li
-
-                        ARGON2, SHA2 and PBKDF2 password schemes
-
-                  -  
-
-                     .. container:: li
-
-                        Contributed overlays:
-
-                     -  
-
-                        .. container:: li
-
-                           lastbind
-
-                     -  
-
-                        .. container:: li
-
-                           smbk5pwd (without Heimdal Kerberos support)
-
-                     -  
-
-                        .. container:: li
-
-                           autogroup
-
-                     -  
-
-                        .. container:: li
-
-                           nssov
-
-                     -  
-
-                        .. container:: li
-
-                           noosrch
-
-                  The installation is done under /usr/local, in order to
-                  avoid conflicts with existing OpenLDAP installation.
-                  In particular, we do not touch the ldap system
-                  libraries, which are linked in by many other programs.
-
-               .. rubric:: Installation
-                  :name: installation
-                  :class: sectionedit3
-
-               .. container:: level2
-
-               .. rubric:: APT repository
-                  :name: apt_repository
-                  :class: sectionedit4
-
-               .. container:: level3
-
-                  .. container:: noteimportant
-
-                     You need to set up the repository for your version:
-
-                     -  
-
-                        .. container:: li
-
-                           lenny (deprecated)
-
-                     -  
-
-                        .. container:: li
-
-                           squeeze (deprecated)
-
-                     -  
-
-                        .. container:: li
-
-                           wheezy (deprecated since 2.4.52, 2.4.51 is
-                           the last version available)
-
-                     -  
-
-                        .. container:: li
-
-                           jessie (deprecated since 2.4.52, 2.4.51 is
-                           the last version available)
-
-                     -  
-
-                        .. container:: li
-
-                           stretch
-
-                     -  
-
-                        .. container:: li
-
-                           buster
-
-                     For Ubuntu systems you can check which Debian
-                     release to choose in /etc/debian_version
-
-                  Authorize downloading of packages in https
-                  repositories:
-
-                  .. code:: code
-
-                     # apt-get install apt-transport-https
-
-                  Configure the repository:
-
-                  .. code:: code
-
-                     # vi /etc/apt/sources.list.d/ltb-project.list
-
-                  .. code:: file
-
-                     deb [arch=amd64] https://ltb-project.org/debian/buster buster main
-
-                  The public key can be downloaded here:
-                  `https://ltb-project.org/lib/RPM-GPG-KEY-LTB-project`_
-
-                  To import this key:
-
-                  .. code:: code
-
-                     # wget -O - https://ltb-project.org/lib/RPM-GPG-KEY-LTB-project | sudo apt-key add -
-
-                  Then update:
-
-                  .. code:: code
-
-                     # apt update
-
-                  You are now ready to install:
-
-                  .. code:: code
-
-                     # apt install openldap-ltb
-
-      ``_
-
-      .. container:: text-center
-
-         .. container:: license
-
-            Except where otherwise noted, content on this wiki is
-            licensed under the following license: `CC
-            Attribution-Noncommercial-Share Alike 3.0 Unported`_
-
-   .. container:: no
-
-      |image1|
-
-   .. container:: no
-      :name: screen__mode
-
-.. _Home: ../start
-.. _Documentation: ../documentation
-.. _Download: ../download
-.. _Community: ../community
-.. _Login: openldap-deb?do=login&sectok=39fb3f9b54a1ecdb3c46340f395d6940
-.. _Welcome on LDAP Tool Box project: ../start
-.. _OpenLDAP DEBs: openldap-deb
-.. _Introduction: openldap-deb#introduction
-.. _Installation: openldap-deb#installation
-.. _APT repository: openldap-deb#apt_repository
-.. _LTB-project OpenLDAP init script: openldap-initscript
-.. _LTB project check_password: openldap-ppolicy-check-password
-.. _LTB project ppm: https://github.com/ltb-project/ppm
-.. _Overlay explockout: https://github.com/davidcoutadeur/explockout
-.. _`https://ltb-project.org/lib/RPM-GPG-KEY-LTB-project`: ../lib/RPM-GPG-KEY-LTB-project
-.. _: javascript:void(0)
-.. _CC Attribution-Noncommercial-Share Alike 3.0 Unported: http://creativecommons.org/licenses/by-nc-sa/3.0/
-
-.. |LDAP Tool Box (LTB)| image:: ../_media/wiki/logo.png
-   :class: pull-left
-   :name: dw__logo
-   :width: 32px
-   :height: 32px
-   :target: ../start
-.. |image1| image:: ../lib/exe/indexer.php?id=documentation:openldap-deb&1630081866
-   :width: 2px
-   :height: 1px
