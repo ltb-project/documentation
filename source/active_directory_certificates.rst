@@ -2,13 +2,13 @@
 Manage Active Directory certificates
 ************************************
 
+This documentation [#f1]_ shows up how to create and update certificates in Active Directory.
+
 .. NOTE::
    Certificate is mandatory to use LDAPS with Active Directory
 
 Create a certificate
 ====================
-
-Documentation from `<http://confluence.atlassian.com/display/CROWD/Configuring+an+SSL+Certificate+for+Microsoft+Active+Directory>`_
 
     1. Using the Active Directory Control Panel – Add/Remove Programs administration tool:
 
@@ -38,3 +38,7 @@ To do this:
 .. WARNING::
    You must restart Active Directory server to use the new certificate for LDAP service (yes it's a shame)
 
+
+.. rubric:: Footnotes
+
+.. [#f1] Documentation comes from `<http://confluence.atlassian.com/display/CROWD/Configuring+an+SSL+Certificate+for+Microsoft+Active+Directory>`_
