@@ -2,30 +2,44 @@
 Migrate from slapd.conf to cn=config
 ************************************
 
-This documentation was written for OpenLDAP LTB packages
+.. TIP::
+   This documentation is generic
 
-Stop OpenLDAP:
+Assumptions:
 
-# service slapd stop
+    :<SLAPD_CONF>: the path to the ``slapd.conf`` OpenLDAP configuration file
+    :<SLAPD_CONF_DIR>: the path to the ``slapd.d`` folder that is going to store the future cn=config configuration
+    :<SLAPD_USER>: the user that owns the slapd process
+    :<SLAPD_GROUP>: the group that owns the slapd process
 
-Create cn=config directory:
+1. Stop OpenLDAP::
 
-# mkdir /usr/local/openldap/etc/openldap/slapd.d
+    systemctl stop slapd
 
-Convert configuration file:
+2. Create cn=config directory::
 
-# slaptest -f /usr/local/openldap/etc/openldap/slapd.conf -F /usr/local/openldap/etc/openldap/slapd.d -d 256
-563b227f bdb_monitor_db_open: monitoring disabled; configure monitor database to enable
-config file testing succeeded
+    mkdir <SLAPD_CONF_DIR>
 
-# chown -R ldap.ldap /usr/local/openldap/etc/openldap/slapd.d
+3. Convert configuration file::
 
-Edit and update /usr/local/openldap/etc/openldap/slapd-cli.conf with:
+    slaptest -f <SLAPD_CONF> -F <SLAPD_CONF_DIR> -d 256
 
-SLAPD_CONF_DIR="$SLAPD_PATH/etc/openldap/slapd.d"
+    # set correct permissions
+    chown -R <SLAPD_USER>:<SLAPD_GROUP> <SLAPD_CONF_DIR>
+    find <SLAPD_CONF_DIR> -type d -exec chmod 750 {} \;
+    find <SLAPD_CONF_DIR> -type f -exec chmod 640 {} \;
 
-Start OpenLDAP:
+4. Update the arguments for your OpenLDAP launch command. It can be in any of these paths:
 
-# service slapd start
+    * the systemd configuration file,
+    * ``/etc/default/slapd``,
+    * ``/etc/sysconfig/slapd``,
+    * ``/usr/local/openldap/etc/openldap/slapd-cli.conf`` for OpenLDAP LTB packages
+
+You should replace the argument: ``-f <SLAPD_CONF>`` by ``-F <SLAPD_CONF_DIR>``
+
+5. Start OpenLDAP::
+
+    service slapd start
 
 
