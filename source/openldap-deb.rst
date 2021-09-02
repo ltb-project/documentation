@@ -1,6 +1,6 @@
-*************
-OpenLDAP DEBs
-*************
+*************************************
+OpenLDAP packages for Debian / Ubuntu
+*************************************
 
 Introduction
 ============
@@ -115,6 +115,9 @@ Configure the repository:
 
     # vi /etc/apt/sources.list.d/ltb-project.list
 
+
+.. WARNING::
+    TODO: adapt URL
 
 ::
 
