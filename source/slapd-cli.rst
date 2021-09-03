@@ -3,191 +3,352 @@ slapd-cli
 ****************
 
 Presentation
+============
 
-The script slapd-cli provide start, stop and other commands for OpenLDAP daemon. It requires:
+The script ``slapd-cli`` provide start, stop and other commands for OpenLDAP daemon. It requires:
 
-    Logger, to forward messages to syslog
-    Awk, for regular expression management
-    BerkeleyDB, for recover and archive tools
-    OpenLDAP, for save, index, ... tools
+    * Logger, to forward messages to syslog
+    * Awk, for regular expression management
+    * OpenLDAP, for save, index,... tools
 
-Configuration of this script can be done in an external file, with the same name as the slapd-cli script in /usr/local/openldap/etc/openldap.
+Configuration of this script can be done in an external file, with the same name as the slapd-cli program
 
-A backup feature allows to save all data or configuration in an LDIF file, compressed or not. The restore feature import the last backup in the directory.
-This script is included in LTB OpenLDAP RPMS and LTB OpenLDAP DEBS
-Usage of CLI
+The main features are:
 
-Run the script like that:
+   * start / stop / status of OpenLDAP daemon
+   * check configuration
+   * debug: start OpenLDAP in debug mode (stay attached)
+   * reindex
+   * backup / restore data
+   * backup / restore configuration
+   * check synchronization status
+   * import test data / test configuration
 
-# /usr/local/openldap/sbin/slapd-cli <action>
+.. TIP::
+   This script is included in debian and red-hat OpenLDAP LTB packages
 
-With action in:
 
-    start:
-        Test configuration
-        Start slurpd if needed
-        Start slapd with data recover if needed
-    stop:
-        Stop slapd and save data if needed
-        Stop slurpd if needed
-    forcestop:
-        If script can read PID, do a kill -KILL PID
-        Else killall -KILL on binaries name
-    restart:
-        Launch stop
-        Launch start
-    force-reload:
-        Force stop
-        Config test
-        Start
-    configtest: test configuration
-    db_recover: data recover (slapd must be stopped)
-    reindex: data index (slapd must be stopped)
-    removelogs: archive old BerkeleyDB logs (slapd must be stopped)
-    backup: LDIF export of all data
-    restore: Remove current data and restore last backup
-    backupconfig: LDIF export of configuration or copy of slapd.conf
-    restoreconfig: Remove current configuration and restore last backup
-    status: Display running status and naming contexts
-    debug: Stop OpenLDAP and restart it in debug mode (level can be configured), with output on the console
-    checksync: Try to find configured providers and check synchronization status
+Usage of slapd-cli
+==================
 
-Installation of CLI
+The script can be launched like this::
+
+    slapd-cli action [optional arguments]
+
+.. TIP::
+   In OpenLDAP LTB packages, the script is available in ``/usr/local/openldap/sbin/slapd-ci``.
+   Anyway, with the PATH updated by ``/etc/profile.d/openldap-profile.sh``, you can just run ``slapd-cli``.
+
+Action is a keyword between:
+
+    :start: start the slapd server
+    :stop: stop the slapd server
+    :forcestop: kill the slapd server if it can't stop
+    :restart: restart the slapd server
+    :debug: start the slapd server in debug mode (stay attached)
+    :force-restart: forcestop + start
+    :status: get the status of currently running slapd server
+    :configtest: test configuration syntax
+    :reindex: index or reindex database
+    :backup: backup the data
+    :restore: restore the data
+    :backupconfig: backup the configuration
+    :restoreconfig: restore the configuration
+    :checksync: check the synchronization state of the current instance to every provider found in configuration
+    :importflatconfigtemplate: import the flat template configuration file, after setting the variables
+    :importldifconfigtemplate: import the ldif template configuration file, after setting the variables
+    :convertconfig [inputfile.conf] [outputfile.ldif]: convert the input slapd configuration file into the equivalent ldif configuration
+    :buildconfigtemplate [inputfile.ldif] [outputfile.ldif]: Get the input ldif configuration file and transform it into a template configuration
+    :importdatatemplate: import the template data file, after setting the variables
+    :lloadstart: start the load-balancer
+    :lloadstop: stop the load-balancer
+    :lloadstatus: get the status of currently running load-balancer
+
+.. TIP::
+   ``slapd-cli`` provides autocompletion with ``slapd-cli-prompt`` configuration file, which is deployed by default in OpenLDAP LTB packages.
+   That way, you just have to use the tab key to find out the actions and autocomplete file names.
+
+
+Installation of slapd-cli
+=========================
+
+.. NOTE::
+   The OpenLDAP installation path is assumed to be ``/usr/local/openldap``.
 
 Copy script in /usr/local/openldap/sbin:
 
-# mv slapd-cli /usr/local/openldap/sbin
-# chmod +x /usr/local/openldap/sbin/slapd
+.. code-block:: console
 
-Configuration file must be installed in /usr/local/openldap/etc/openldap:
+    # mv slapd-cli /usr/local/openldap/sbin
+    # chmod +x /usr/local/openldap/sbin/slapd
 
-# mkdir -p /usr/local/openldap/etc/openldap
-# mv slapd-cli.conf /usr/local/openldap/etc/openldap
-# chmod 600 /usr/local/openldap/etc/openldap/slapd-cli.conf
+Configuration file must be installed into configuration folder:
 
-Configuration of CLI
+.. code-block:: console
 
-Use the external file in /usr/local/openldap/etc/openldap rather than editing directly the script.
+    # mkdir -p /usr/local/openldap/etc/openldap
+    # mv slapd-cli.conf /usr/local/openldap/etc/openldap/
+    # chmod 600 /usr/local/openldap/etc/openldap/slapd-cli.conf
 
-    Following parameters are mandatory:
+Deploy template files into configuration folder:
 
-Parameter 	Description
-IP 	Listen address for standard LDAP requests. Meta character * can be used for all interfaces
-PORT 	Listen port for standard LDAP requests. Use SLAPD_SERVICES if you need several ports
-SSLIP 	Listen address for LDAPS requests. Meta character * can be used for all interfaces
-LDAPI_SOCKETDIR 	Directory where LDAPI socket is created (will be created if it does not exist)
-LDAPI_SOCKETURL 	LDAPI socket URL (URL encoded value)
-- 	
-SLAPD_PATH 	OpenLDAP main directory
-DATA_PATH 	Data directory. You can set auto to get directories configured in slapd.conf
-SLAPD_PID_FILE 	The pidfile parameter of slapd.conf
-SLAPD_CONF 	Main configuration file
-SLAPD_SERVICES 	Listen URI LDAP list, separated by spaces
-SLAPD_BIN 	slapd binary path
-- 	
-SLAPADD_BIN 	slapadd binary path
-SLAPCAT_BIN 	slapcat binary path
-SLAPINDEX_BIN 	slapindex binary path
-SLAPTEST_BIN 	slaptest binary path
-- 	
-SLURPD_PID_FILE 	The replica-pidfile parameter of slapd.conf
-SLURPD_BIN 	slurpd binary path
-- 	
-BDB_PATH 	BerkeleyDB main directory
-DB_ARCHIVE_BIN 	db_archive binary path
-DB_RECOVER_BIN 	db_recover binary path
-RECOVER_AT_STARTUP 	Force data recover on startup. Should not be used for OpenLDAP > 2.2
-- 	
-BACKUP_AT_SHUTDOWN 	Backup data when slapd is stopped
-BACKUP_PATH 	Backup directory
-BACKUP_SUFFIX 	Backup file suffix
-- 	
-TIMEOUT 	Stop slapd timeout. After that, you need to use the forcestop rule
-FD_LIMIT 	Maximum opened file descriptor
+.. code-block:: console
 
-    Following parameters are not mandatory (they can contain “”) :
+    # mv *-template.{conf,ldif} /usr/local/openldap/etc/openldap/
 
-Parameter 	Description
-SLAPD_PARAMS 	Additional options forslapd. options -h, -f, -u et -g are already managed
-SLAPD_CONF_DIR 	Main configuration dir (cancel SLAPD_CONF parameter)
-SLAPD_USER 	Owner user of slapd andslurpd process
-SLAPD_GROUP 	Owner group of slapd andslurpd process
-SLAPD_SYSLOG_LOCAL_USER 	Syslog local user (by default local4)
-- 	
-SLURPD_PARAMS 	Additional options for slurpd. Option -f is already managed
-- 	
-BACKUP_COMPRESS_EXT 	Extension of LDIF compressed file. No compression is done if this is empty
-BACKUP_COMPRESS_BIN 	Binary used to compress LDIF file
-BACKUP_UNCOMPRESS_BIN 	Binary used to uncompress LDIF file
-DEBUG_LEVEL 	OpenLDAP log level to use in debug mode. Default is 256 (stats)
-Startup script
-initd script
+Optionally, deploy load-balancer configuration file:
 
-The slapd-cli command is used in an initd script.
+.. code-block:: console
 
-Installation:
+    # mv lload.conf /usr/local/openldap/etc/openldap/
+    # chmod 600 /usr/local/openldap/etc/openldap/lload.conf
 
-# cp slapd.init /etc/init.d/slapd
-# chmod +x /etc/init.d/slapd
+Optionally, enable autocomplete:
 
-For RedHat based systems:
+.. code-block:: console
 
-# chkconfig --add slapd
+    # mv slapd-cli-prompt /etc/bash_completion.d/
 
-For Debian based systems:
+Finally, you can decide to use the systemd services for slapd or lload:
 
-# update-rc.d slapd defaults
+.. code-block:: console
 
-systemd script
+    # mv slapd-ltb.service /lib/systemd/system/
+    # systemctl --system daemon-reload
+    # systemctl enable slapd-ltb.service
 
-The slapd-cli command is used in an systemd script.
+    # mv lload-ltb.service /lib/systemd/system/
+    # systemctl --system daemon-reload
+    # systemctl enable lload-ltb.service
 
-Installation:
+Configuration of slapd-cli
+==========================
 
-# cp slapd.service /etc/systemd/system/
-# systemctl --system daemon-reload
-# systemctl enable slapd.service
+Use the external file in ``/usr/local/openldap/etc/openldap`` rather than editing directly the script.
+
+
+Following parameters are about network:
+
++----------------------------+--------------------------------------------------------------------------------------------+
+| Parameter                  | Description                                                                                |
++============================+============================================================================================+
+| ``IP``                     | Listen address for LDAP requests. Meta character ``*`` can be used for all interfaces      |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``PORT``                   | Listen port for LDAP requests. Use ``SLAPD_SERVICES`` if you need several ports            |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SSLIP``                  | Listen address for LDAPS requests. Meta character * can be used for all interfaces         |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SSLPORT``                | Listen port for LDAPS requests. Use ``SLAPD_SERVICES`` if you need several ports           |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LDAPI_SOCKETDIR``        | Directory where LDAPI socket is created (will be created if it does not exist)             |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LDAPI_SOCKETURL``        | LDAPI socket URL (URL encoded value)                                                       |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_SERVICES``         | list of listen LDAP URIs, space-separated. It is made of all previous variables.           |
+|                            | This parameter is corresponding to ``-h`` option in slapd launch command.                  |
++----------------------------+--------------------------------------------------------------------------------------------+
+
+Following parameters are about OpenLDAP directories and files:
+
++----------------------------+--------------------------------------------------------------------------------------------+
+| Parameter                  | Description                                                                                |
++============================+============================================================================================+
+| ``SLAPD_PATH``             | OpenLDAP main directory                                                                    |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``DATA_PATH``              | Data folder. You can set ``auto`` to let slapd-cli find out data paths in configuration    |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_PID_FILE``         | Path to the pid file. It must match the olcPidFile configuration parameter                 |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_CONF``             | Path to the flat slapd.conf configuration file                                             |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_CONF_DIR``         | Path to the slapd.d folder. When defined, ``SLAPD_CONF`` won't be used anymore             |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_BIN``              | slapd binary path                                                                          |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_PARAMS``           | Additional options for slapd. Options ``-h``, ``-f``, ``-u`` and ``-g`` are already managed|
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_MODULEDIR``        | Path to the library module folder                                                          |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPADD_BIN``            | slapadd binary path                                                                        |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPADD_PARAMS``         | slapadd extra options                                                                      |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPCAT_BIN``            | slapcat binary path                                                                        |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPCAT_PARAMS``         | slapcat extra options                                                                      |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPINDEX_BIN``          | slapindex binary path                                                                      |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPTEST_BIN``           | slaptest binary path                                                                       |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LDAPSEARCH_BIN``         | ldapsearch binary path                                                                     |
++----------------------------+--------------------------------------------------------------------------------------------+
+
+Following parameters are about other options for slapd launch:
+
++----------------------------+--------------------------------------------------------------------------------------------+
+| Parameter                  | Description                                                                                |
++============================+============================================================================================+
+| ``SLAPD_USER``             | Owner user of slapd process                                                                |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_GROUP``            | Owner group of slapd process                                                               |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_SYSLOG_LOCAL_USER``| Syslog local user (by default ``local4``)                                                  |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``TIMEOUT``                | Maximum delay waiting for slapd to stop. After, you need to use the ``forcestop`` action   |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``FD_LIMIT``               | Maximum opened file descriptors                                                            |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``DEBUG_LEVEL``            | OpenLDAP log level to use in debug mode. Default is 256 (stats)                            |
++----------------------------+--------------------------------------------------------------------------------------------+
+
+Following parameters are about backup and restore:
+
++----------------------------+--------------------------------------------------------------------------------------------+
+| Parameter                  | Description                                                                                |
++============================+============================================================================================+
+| ``BACKUP_AT_SHUTDOWN``     | Do a backup data when slapd is stopped                                                     |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_PATH``            | Backup folder                                                                              |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_SUFFIX``          | Backup file suffix                                                                         |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_COMPRESS_EXT``    | Extension of LDIF compressed file. No compression is done if this is empty                 |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_COMPRESS_BIN``    | Binary used to compress LDIF file                                                          |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_UNCOMPRESS_BIN``  | Binary used to uncompress LDIF file                                                        |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``UMASK``                  | command used for running ``umask``                                                         |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``MASK``                   | mask used for computing unix permissions while backuping                                   |
++----------------------------+--------------------------------------------------------------------------------------------+
+
+Following parameters are about data provisioning:
+
++----------------------------+----------------------------------------------------------------------------------------------+
+| Parameter                  | Description                                                                                  |
++============================+==============================================================================================+
+| ``DATA_TEMPLATE_FILE``     | Path to template file used for data provisioning                                             |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_SUFFIX``            | Suffix used for data provisioning. suffix is going to be replaced in ``DATA_TEMPLATE_FILE``  |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_ORGANIZATION``      | Organization (``o`` attribute) used for the suffix in ``DATA_TEMPLATE_FILE``                 |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_SERVICEACCOUNT_DN`` | Distinguished name for a service account.                                                    |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_SERVICEACCOUNT_PW`` | Password for the latter service account. Password must be clear-text. It will be hashed      |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_ADMIN_<USER>_DN``   | | Distinguished name for an admin account. ``<USER>`` must be replaced by any unique string. |
+|                            | | You can add any number of admin accounts by choosing as many ``<USER>`` as you want.       |
+|                            | | Admins are no different from user account except that they are member of an admin group    |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_ADMIN_<USER>_PW``   | Password for the latter admin account. Password must be clear-text. It will be hashed        |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_ADMIN_<USER>_UID``  | ``uid`` attribute value for the admin account                                                |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_ADMIN_<USER>_SN``   | surname for the admin account                                                                |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_ADMIN_<USER>_GN``   | givenname for the admin account                                                              |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_ADMIN_<USER>_MAIL`` | mail for the admin account                                                                   |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_USER_<USER>_DN``    | | Distinguished name for a user account. ``<USER>`` must be replaced by any unique string.   |
+|                            | | You can add any number of user accounts by choosing as many ``<USER>`` as you want.        |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_USER_<USER>_PW``    | Password for the corresponding user account. Password must be clear-text. It will be hashed  |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_USER_<USER>_UID``   | ``uid`` attribute value for the user account                                                 |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_USER_<USER>_SN``    | surname for the user account                                                                 |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_USER_<USER>_GN``    | givenname for the user account                                                               |
++----------------------------+----------------------------------------------------------------------------------------------+
+| ``DATA_USER_<USER>_MAIL``  | mail for the user account                                                                    |
++----------------------------+----------------------------------------------------------------------------------------------+
+
+Following parameters are about configuration provisioning:
+
++-------------------------------+--------------------------------------------------------------------------------------------+
+| Parameter                     | Description                                                                                |
++===============================+============================================================================================+
+| ``CONFIG_FLAT_TEMPLATE_FILE`` | Path to the flat slapd.conf template file used for configuration provisioning              |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_LDIF_TEMPLATE_FILE`` | Path to the ldif template file used for configuration provisioning                         |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_SUFFIX``             | Main data base suffix                                                                      |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_FQDN``               | Full-qualified domain name of the machine hosting slapd (used for ``olcSaslHost``)         |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_LOGLEVEL``           | Log level, see OpenLDAP ``olcLogLevel`` directive                                          |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_MANAGERROOTDN``      | Distinguished name for the main data base superadmin                                       |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_MANAGERROOTPW``      | Password for the main data base superadmin. Password must be clear-text. It will be hashed |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_CONFIGROOTDN``       | Distinguished name for cn=config superadmin                                                |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_CONFIGROOTPW``       | Password for the cn=config superadmin. Password must be clear-text. It will be hashed      |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_DATADIR``            | Path to the main data base folder                                                          |
++-------------------------------+--------------------------------------------------------------------------------------------+
+
+Following parameters are about load balancer:
+
++----------------------------+--------------------------------------------------------------------------------------------+
+| Parameter                  | Description                                                                                |
++============================+============================================================================================+
+| ``LLOAD_IP``               | Listen address for LDAP requests. Meta character ``*`` can be used for all interfaces      |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LLOAD_PORT``             | Listen port for LDAP requests. Use ``LLOAD_SERVICES`` if you need several ports            |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LLOAD_SSLIP``            | Listen address for LDAPS requests. Meta character * can be used for all interfaces         |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LLOAD_SSLPORT``          | Listen port for LDAPS requests. Use ``LLOAD_SERVICES`` if you need several ports           |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LLOAD_SOCKETURL``        | socket URL for load balancer (URL encoded value)                                           |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LLOAD_SERVICES``         | | list of listen LDAP URIs, space-separated. It is made of all previous variables.         |
+|                            | | This parameter is corresponding to ``-h`` option in slapd launch command.                |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LLOAD_PID_FILE``         | Path to the pid file. It must match the olcPidFile configuration parameter                 |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LLOAD_CONF``             | Path to the flat lload.conf configuration file                                             |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LLOAD_CONF_DIR``         | Path to the slapd.d lload conf folder. When defined, ``LLOAD_CONF`` won't be used anymore  |
++----------------------------+--------------------------------------------------------------------------------------------+
+
 
 Run several OpenLDAP instances
+==============================
 
 You can run several OpenLDAP daemons on the same server.
-initd script
 
-    Copy initd script:
+Copy systemd script:
 
-# cp /etc/init.d/slapd /etc/init.d/slapd2
+.. code-block:: console
 
-    Change CLI_BIN value:
+   # cp /lib/systemd/system/slapd-ltb.service /lib/systemd/system/slapd2-ltb.service
 
-CLI_BIN="/usr/local/openldap/sbin/slapd2-cli"
+Change ``PIDFile``, ``ExecStart``, ``ExecRestart``, ``ExecStop`` values:
 
-    Link slapd-cli command:
+.. code-block:: console
 
-# ln -s /usr/local/openldap/sbin/slapd-cli /usr/local/openldap/sbin/slapd2-cli
+   PIDFile=/usr/local/openldap/var/run/slapd2.pid
+   ExecStart=/usr/local/openldap/sbin/slapd2-cli start
+   ExecRestart=/usr/local/openldap/sbin/slapd2-cli restart
+   ExecStop=/usr/local/openldap/sbin/slapd2-cli stop
 
-    Copy and edit slapd-cli configuration to change at least the ports and PID file:
+Link slapd-cli command:
 
-# cp /usr/local/openldap/etc/openldap/slapd-cli.conf /usr/local/openldap/etc/openldap/slapd2-cli.conf
+.. code-block:: console
 
-systemd script
+    # ln -s /usr/local/openldap/sbin/slapd-cli /usr/local/openldap/sbin/slapd2-cli
 
-    Copy systemd script:
+Copy and edit slapd-cli configuration to change at least the ports and PID file:
 
-# cp /etc/systemd/system/slapd.service /etc/systemd/system/slapd2.service
+.. code-block:: console
 
-    Change PIDFile, ExecStart, ExecRestart, ExecStop values:
-
-PIDFile=/usr/local/openldap/var/run/slapd2.pid
-ExecStart=/usr/local/openldap/sbin/slapd2-cli start
-ExecRestart=/usr/local/openldap/sbin/slapd2-cli restart
-ExecStop=/usr/local/openldap/sbin/slapd2-cli stop
-
-    Link slapd-cli command:
-
-# ln -s /usr/local/openldap/sbin/slapd-cli /usr/local/openldap/sbin/slapd2-cli
-
-    Copy and edit slapd-cli configuration to change at least the ports and PID file:
-
-# cp /usr/local/openldap/etc/openldap/slapd-cli.conf /usr/local/openldap/etc/openldap/slapd2-cli.conf
+   # cp /usr/local/openldap/etc/openldap/slapd-cli.conf /usr/local/openldap/etc/openldap/slapd2-cli.conf
 
 
