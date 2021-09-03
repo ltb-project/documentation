@@ -3,71 +3,103 @@ OpenLDAP packages for Red-Hat / CentOS
 **************************************
 
 Introduction
-------------
+============
 
 .. include:: openldap-packages.rst
 
 Installation
-------------
+============
 
 
 Yum repository
-Yum repositories are available for this release versions ($releasever):
+--------------
 
-    5/5Server (deprecated)
-    6/6Server (deprecated since 2.4.52)
-    7/7Server
-    8/8Server
+.. TIP::
+   Yum repositories are available for this release versions ($releasever):
 
-Configure the yum repository :
+   * 7/7Server
+   * 8/8Server
 
-# vi /etc/yum.repos.d/ltb-project.repo
+Configure the yum repository:
 
-[ltb-project]
-name=LTB project packages
-baseurl=https://ltb-project.org/rpm/$releasever/$basearch
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LTB-project
+.. code-block:: console
+
+    # vi /etc/yum.repos.d/ltb-project.repo
+
+::
+
+    [ltb-project]
+    name=LTB project packages
+    baseurl=https://ltb-project.org/rpm/$releasever/$basearch
+    enabled=1
+    gpgcheck=1
+    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LTB-project
+
+The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
+
+To import this key:
+
+.. WARNING::
+    TODO: adapt URL
+
+.. code-block:: console
+
+    # rpm --import https://ltb-project.org/_static/RPM-GPG-KEY-LTB-project
 
 Then update:
 
-# yum update
+.. code-block:: console
 
-The public key can be downloaded here: https://ltb-project.org/lib/RPM-GPG-KEY-LTB-project
-
-To import this key:
-
-# rpm --import https://ltb-project.org/lib/RPM-GPG-KEY-LTB-project
+    # yum update
 
 You are now ready to install:
 
-# yum install openldap-ltb
+.. code-block:: console
+
+    # yum install openldap-ltb
+
 
 Manual download
+---------------
 
-You can download the RPMs here: Download.
+.. WARNING::
+    TODO: adapt URL
 
-The public key can be downloaded here: https://ltb-project.org/lib/RPM-GPG-KEY-LTB-project
+You can download the RPMs here: `Download <https://ltb-project.org/download>`_.
+
+The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
 
 To import this key:
 
-# rpm --import https://ltb-project.org/lib/RPM-GPG-KEY-LTB-project
+.. WARNING::
+    TODO: adapt URL
+
+.. code-block:: console
+
+    # rpm --import https://ltb-project.org/_static/RPM-GPG-KEY-LTB-project
+
 
 Just run this command to install them (with dependency management):
 
-# yum localinstall berkeleydb-ltb* openldap-ltb*
+.. code-block:: console
+
+    # yum localinstall openldap-ltb*
 
 Rebuild RPMs
+============
 
 You can download the source rpm to build your own OpenLDAP RPMs.
 
 Install source RPMs:
 
-# rpm -Uvh openldap-ltb-VERSION.src.rpm
+.. code-block:: console
+
+    # rpm -Uvh openldap-ltb-VERSION.src.rpm
 
 Do your job and rebuild RPMs:
 
-# cd /usr/src/rpm
-# rpmbuild -ba SPECS/openldap-ltb.spec
+.. code-block:: console
+
+    # cd /usr/src/rpm
+    # rpmbuild -ba SPECS/openldap-ltb.spec
 

@@ -36,10 +36,6 @@ Configure the repository:
 
     # vi /etc/apt/sources.list.d/ltb-project.list
 
-
-.. WARNING::
-    TODO: adapt URL
-
 ::
 
     deb [arch=amd64] https://ltb-project.org/debian/bullseye bullseye main
@@ -48,6 +44,9 @@ Configure the repository:
 The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
 
 To import this key: 
+
+.. WARNING::
+    TODO: adapt URL
 
 .. code-block:: console
 
@@ -65,4 +64,14 @@ You are now ready to install:
 
     # apt install openldap-ltb
 
+
+Rebuild debian packages
+=======================
+
+You can rebuild the debian packages:
+
+* get the packaging sources
+* follow the README procedure
+
+Everything is available `here <https://github.com/ltb-project/openldap-deb>`_
 
