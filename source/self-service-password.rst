@@ -31,12 +31,9 @@ It has the following features:
 .. Note::
    Self Service Password code is now hosted on GitHub: `<https://github.com/ltb-project/self-service-password>`_
 
-..
-   the following span item is linked to the js script:
-   https://api.alternativeto.net/software/ldap-tool-box-self-service-password/widgetjs/grey
-
 .. raw:: html
 
+   <script src="//api.alternativeto.net/software/ldap-tool-box-self-service-password/widgetjs/grey" type="text/javascript"></script>
    Vote for this software: <span id="a2itemwidget"></span><br/>
 
 
