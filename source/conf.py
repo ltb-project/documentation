@@ -56,3 +56,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 html_favicon = 'images/favicon.ico'
+
+html_js_files = [
+    'https://api.alternativeto.net/software/ldap-tool-box-self-service-password/widgetjs/grey'
+]
