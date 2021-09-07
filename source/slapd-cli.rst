@@ -290,6 +290,10 @@ Following parameters are about configuration provisioning:
 +-------------------------------+--------------------------------------------------------------------------------------------+
 | ``CONFIG_CONFIGROOTPW``       | Password for the cn=config superadmin. Password must be clear-text. It will be hashed      |
 +-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_MONITORROOTDN``      | Distinguished name for cn=monitor superadmin                                               |
++-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_MONITORROOTPW``      | Password for the cn=monitor superadmin. Password must be clear-text. It will be hashed     |
++-------------------------------+--------------------------------------------------------------------------------------------+
 | ``CONFIG_DATADIR``            | Path to the main data base folder                                                          |
 +-------------------------------+--------------------------------------------------------------------------------------------+
 
