@@ -39,9 +39,6 @@ The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project
 
 To import this key:
 
-.. WARNING::
-    TODO: adapt URL
-
 .. code-block:: console
 
     # rpm --import https://ltb-project.org/_static/RPM-GPG-KEY-LTB-project
@@ -62,17 +59,11 @@ You are now ready to install:
 Manual download
 ---------------
 
-.. WARNING::
-    TODO: adapt URL
-
 You can download the RPMs here: `Download <https://ltb-project.org/download>`_.
 
 The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
 
 To import this key:
-
-.. WARNING::
-    TODO: adapt URL
 
 .. code-block:: console
 

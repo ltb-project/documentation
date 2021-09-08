@@ -45,9 +45,6 @@ The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project
 
 To import this key: 
 
-.. WARNING::
-    TODO: adapt URL
-
 .. code-block:: console
 
     # curl https://ltb-project.org/_static/RPM-GPG-KEY-LTB-project | apt-key add -
