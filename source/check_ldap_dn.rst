@@ -48,5 +48,4 @@ Other options
 Download
 ========
 
-This plugin, along with all other Nagios plugins from this site, can be downloaded in a single archive.
-
+This plugin, along with all other Nagios plugins from this site, can be `downloaded <https://ltb-project.org/download#monitoring>`_ in a single archive.
