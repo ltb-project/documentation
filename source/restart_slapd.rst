@@ -3,45 +3,52 @@ Restart OpenLDAP event handler
 ******************************
 
 Presentation
+============
 
-The script restart_slapd.sh is an event handler designed for Nagios.
+The script ``restart_slapd.sh`` is an `event handler designed for Nagios <https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/eventhandlers.html>`_.
 
 It restart OpenLDAP if the service is CRITICAL in HARD state. OpenLDAP is killed with force if a normal kill takes too much time.
 
-Warning: this script requires root privileges, because it uses the kill command. You have to run Nagios as root or set a SUID bit on the script.
+.. WARNING::
+   This script requires root privileges, because it uses the kill command. You have to run Nagios as root or set a SUID bit on the script.
+
 Configuration
+=============
 
-Edit the scrpt to set these parameters:
+Edit the script to set these parameters:
 
-    SLAPD_PID_FILE: File where OpenLDAP stores its PID
-    SLAPD_START_CMD: How OpenLDAP is startes
-    TIMEOUT: time to wait before doing a kill -KILL
+    * ``SLAPD_PID_FILE``: File where OpenLDAP stores its PID
+    * ``SLAPD_START_CMD``: How OpenLDAP is started
+    * ``TIMEOUT``: time to wait before doing a kill -KILL
 
-Download
+.. include:: download-plugins.rst
 
-This plugin, along with all other Nagios plugins from this site, can be downloaded in a single archive.
 Installation
+============
 
-Copy the script with other Nagios eventhandlers, for example in /usr/local/nagios/libexec/eventhandlers/:
+Copy the script with other Nagios eventhandlers, for example in ``/usr/local/nagios/libexec/eventhandlers/``:
 
-# cp restart_slapd.sh /usr/local/nagios/libexec/eventhandlers/
-# chmod +x /usr/local/nagios/libexec/eventhandlers/restart_slapd.sh
+.. code-block:: console
 
-Edit Nagios commands file and add:
+   # cp restart_slapd.sh /usr/local/nagios/libexec/eventhandlers/
+   # chmod +x /usr/local/nagios/libexec/eventhandlers/restart_slapd.sh
 
-define command{
-	command_name	restart_slapd
-	command_line	/usr/local/nagios/libexec/eventhandlers/restart_slapd.sh  $SERVICESTATE$ $SERVICESTATETYPE$ $SERVICEATTEMPT$
-	}
+Edit Nagios commands file and add::
 
-Add the event handkler to an LDAP check service:
+    define command{
+        command_name    restart_slapd
+        command_line    /usr/local/nagios/libexec/eventhandlers/restart_slapd.sh  $SERVICESTATE$ $SERVICESTATETYPE$ $SERVICEATTEMPT$
+    }
 
-define service{
-	host_name			somehost
-	service_description		LDAP
-	max_check_attempts		4
-	event_handler			restart_slapd
-	...other service variables...
-	}
+
+Add the event handler to an LDAP check service::
+
+    define service{
+        host_name                somehost
+        service_description      LDAP
+        max_check_attempts       4
+        event_handler            restart_slapd
+        ...other service variables...
+    }
 
 

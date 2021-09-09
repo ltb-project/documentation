@@ -26,7 +26,7 @@ Usage
 
 .. code-block:: console
 
-    check_ldap_syncrepl_status.pl -H <hostname> [-h] [-v] [-V]
+    $ check_ldap_syncrepl_status.pl -H <hostname> [-h] [-v] [-V]
 
 Mandatory options
 -----------------
@@ -53,10 +53,8 @@ Other options
 .. TIP::
    Remark: To use SSL/TLS, write ``ldaps:`` or ``ldap+tls:`` in LDAP URI.
 
-Download
-========
 
-This plugin, along with all other Nagios plugins from this site, can be `downloaded <https://ltb-project.org/download#monitoring>`_ in a single archive.
+.. include:: download-plugins.rst
 
 .. rubric:: Footnotes
 
