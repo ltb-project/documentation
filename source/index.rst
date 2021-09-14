@@ -3,16 +3,73 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+
 Welcome to project-ltb's documentation
 ======================================
+
+
+.. image:: images/ltb-logo.png
+   :alt: image of LTB logo
+   :align: left
+
+Presentation
+------------
+
+LTB (LDAP Tool Box) project is a set of tools around LDAP. It is made of:
+
+* :doc:`OpenLDAP packages and overlays <openldap-packages>` 
+* :ref:`Installation and configuration documentation for OpenLDAP and overlays packages <install-openldap>`
+* :ref:`Plugins for monitoring and statistics <monitoring-plugins>`
+* :ref:`web applications: Self service password, white pages and service desk <web-applications>`
+* :ref:`LDAP Howtos <ldap-howtos>`
+
+
+
+.. image:: images/packaging.png
+   :alt: image of openldap packaging
+   :align: left
+
+.. _install-openldap:
+
+Install OpenLDAP LTB
+--------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   openldap-rpm
+   openldap-deb
+
+
+
+.. image:: images/manage.png
+   :alt: image of toothed wheel
+   :align: left
+
+.. _admin-openldap:
+
+Administration
+--------------
+
+.. toctree::
+   :maxdepth: 1
+
+   slapd-cli
+
+
 
 .. image:: images/question.png
    :alt: image of howto
    :align: left
 
+
+.. _ldap-howtos:
+
+General LDAP Howtos
+-------------------
+
 .. toctree::
    :maxdepth: 1
-   :caption: General LDAP Howtos
 
    auth_ldap_best_practices
    active_directory_certificates
@@ -21,26 +78,18 @@ Welcome to project-ltb's documentation
    openldap_ssl_tls_mutual_authentication
 
 
-.. image:: images/packaging.png
-   :alt: image of openldap packaging
-   :align: left
-
-.. toctree::
-   :maxdepth: 1
-   :caption: OpenLDAP packaging
-
-   openldap-rpm
-   openldap-deb
-   slapd-cli
-
-
 .. image:: images/plugin.png
    :alt: image of plugin
    :align: left
 
+
+.. _openldap-overlays:
+
+OpenLDAP overlays and extensions
+--------------------------------
+
 .. toctree::
    :maxdepth: 1
-   :caption: OpenLDAP overlays and extensions
 
    openldap-ppm
    openldap-noopsrch
@@ -50,9 +99,14 @@ Welcome to project-ltb's documentation
    :alt: image of web application
    :align: left
 
+
+.. _web-applications:
+
+Web applications
+----------------
+
 .. toctree::
    :maxdepth: 1
-   :caption: Web applications
 
    self-service-password
    white-pages
@@ -63,9 +117,13 @@ Welcome to project-ltb's documentation
    :alt: image of monitoring
    :align: left
 
+.. _monitoring-plugins:
+
+Monitoring: Nagios plugins
+--------------------------
+
 .. toctree::
    :maxdepth: 1
-   :caption: Monitoring: Nagios plugins
 
    check_ldap_dn
    check_ldap_time
@@ -81,9 +139,13 @@ Welcome to project-ltb's documentation
    :alt: image of statistics
    :align: left
 
+.. _statistics:
+
+Statistics with Cacti
+---------------------
+
 .. toctree::
    :maxdepth: 1
-   :caption: Statistics with Cacti
 
    ldap_response_time
    openldap_operations
@@ -93,13 +155,34 @@ Welcome to project-ltb's documentation
    :alt: image of script
    :align: left
 
+.. _ldap-scripts:
+
+LDAP scripts
+------------
+
 .. toctree::
    :maxdepth: 1
-   :caption: LDAP scripts
 
    checkldappwdexpiration
    cleanldapbrokenaliases
    file2ldif
    ldap-stats
 
+
+
+
+.. raw:: html
+
+   <!--
+   Hook for all files to be virtually included in a toctree
+
+.. toctree::
+   :maxdepth: 1
+
+   openldap-packages
+
+
+.. raw:: html
+
+   -->
 

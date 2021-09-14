@@ -1,5 +1,7 @@
+OpenLDAP packages
+=================
 
-LTB project provides 5 Debian packages:
+LTB project provides 5 packages for Debian/Ubuntu and Red-Hat/CentOS:
 
 :openldap-ltb:                   main OpenLDAP package, including slapd-cli,
                                  systemd service, and many openldap core modules

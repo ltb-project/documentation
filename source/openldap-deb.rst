@@ -1,12 +1,6 @@
-*************************************
-OpenLDAP packages for Debian / Ubuntu
-*************************************
-
-Introduction
-============
-
-.. include:: openldap-packages.rst
-
+****************************************
+Install OpenLDAP LTB for Debian / Ubuntu
+****************************************
 
 Installation
 ============

@@ -1,11 +1,6 @@
-**************************************
-OpenLDAP packages for Red-Hat / CentOS
-**************************************
-
-Introduction
-============
-
-.. include:: openldap-packages.rst
+*****************************************
+Install OpenLDAP LTB for Red-Hat / CentOS
+*****************************************
 
 Installation
 ============
