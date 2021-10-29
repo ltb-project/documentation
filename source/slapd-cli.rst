@@ -282,6 +282,8 @@ Following parameters are about configuration provisioning:
 +-------------------------------+--------------------------------------------------------------------------------------------+
 | ``CONFIG_LOGLEVEL``           | Log level, see OpenLDAP ``olcLogLevel`` directive                                          |
 +-------------------------------+--------------------------------------------------------------------------------------------+
+| ``CONFIG_LOGFILE``            | path of the log file, see OpenLDAP ``olcLogFile`` directive                                |
++-------------------------------+--------------------------------------------------------------------------------------------+
 | ``CONFIG_MANAGERROOTDN``      | Distinguished name for the main data base superadmin                                       |
 +-------------------------------+--------------------------------------------------------------------------------------------+
 | ``CONFIG_MANAGERROOTPW``      | Password for the main data base superadmin. Password must be clear-text. It will be hashed |
