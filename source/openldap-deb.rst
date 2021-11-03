@@ -30,9 +30,17 @@ Configure the repository:
 
     # vi /etc/apt/sources.list.d/ltb-project.list
 
+For OpenLDAP 2.4:
+
 ::
 
     deb [arch=amd64] https://ltb-project.org/debian/bullseye bullseye main
+
+For OpenLDAP 2.5:
+
+::
+
+    deb [arch=amd64] https://ltb-project.org/debian/openldap25/bullseye bullseye main
 
 
 The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.

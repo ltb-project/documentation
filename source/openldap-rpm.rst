@@ -21,11 +21,24 @@ Configure the yum repository:
 
     # vi /etc/yum.repos.d/ltb-project.repo
 
+For OpenLDAP 2.4:
+
 ::
 
     [ltb-project]
     name=LTB project packages
     baseurl=https://ltb-project.org/rpm/$releasever/$basearch
+    enabled=1
+    gpgcheck=1
+    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LTB-project
+
+For OpenLDAP 2.5:
+
+::
+
+    [ltb-project]
+    name=LTB project packages
+    baseurl=https://ltb-project.org/rpm/openldap25/$releasever/$basearch
     enabled=1
     gpgcheck=1
     gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LTB-project
