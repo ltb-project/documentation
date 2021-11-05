@@ -11,6 +11,6 @@ It enables an administrator to add new criteria for a given policy: minium numbe
 For more information, give a look:
 
 * at the `github repository <https://github.com/ltb-project/ppm>`_
-* at the man page :manpage:`ppm(5)` available in the OpenLDAP sources. (since 2.5.8)
+* at the man page :manpage:`slapm-ppm(5)` available in the OpenLDAP sources. (since 2.5.8)
 
 
