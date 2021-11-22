@@ -40,6 +40,6 @@ You should replace the argument: ``-f <SLAPD_CONF>`` by ``-F <SLAPD_CONF_DIR>``
 
 5. Start OpenLDAP::
 
-    service slapd start
+    systemctl slapd start
 
 

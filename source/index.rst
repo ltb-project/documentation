@@ -18,18 +18,16 @@ Presentation
 LTB (LDAP Tool Box) project is a set of tools around LDAP. It is made of:
 
 * :doc:`OpenLDAP packages and overlays <openldap-packages>` 
-* :ref:`Installation and configuration documentation for OpenLDAP and overlays packages <install-openldap>`
-* :ref:`Plugins for monitoring and statistics <monitoring-plugins>`
-* :ref:`web applications: Self service password, white pages and service desk <web-applications>`
-* :ref:`LDAP Howtos <ldap-howtos>`
+* documentation for OpenLDAP and overlays packages
+* Plugins for monitoring and statistics
+* web applications: Self service password, white pages and service desk
+* LDAP Howtos
 
 
 
 .. image:: images/packaging.png
    :alt: image of openldap packaging
    :align: left
-
-.. _install-openldap:
 
 Install OpenLDAP LTB
 --------------------
@@ -46,10 +44,8 @@ Install OpenLDAP LTB
    :alt: image of toothed wheel
    :align: left
 
-.. _admin-openldap:
-
-Administration
---------------
+Manage OpenLDAP LTB
+-------------------
 
 .. toctree::
    :maxdepth: 1
@@ -57,13 +53,35 @@ Administration
    slapd-cli
 
 
+|
+
+
+.. image:: images/monitoring.png
+   :alt: image of monitoring
+   :align: left
+
+Monitor your directory
+----------------------
+
+You can use the following Nagios plugins to monitor your directory:
+
+.. toctree::
+   :maxdepth: 1
+
+   check_ldap_dn
+   check_ldap_time
+   check_ldap_syncrepl_status
+   check_ldap_query
+   check_ldap_monitor
+   check_ldap_monitor_389ds
+   check_lmdb_usage
+   restart_slapd
+
 
 .. image:: images/question.png
    :alt: image of howto
    :align: left
 
-
-.. _ldap-howtos:
 
 General LDAP Howtos
 -------------------
@@ -83,8 +101,6 @@ General LDAP Howtos
    :align: left
 
 
-.. _openldap-overlays:
-
 OpenLDAP overlays and extensions
 --------------------------------
 
@@ -100,8 +116,6 @@ OpenLDAP overlays and extensions
    :align: left
 
 
-.. _web-applications:
-
 Web applications
 ----------------
 
@@ -113,33 +127,9 @@ Web applications
    service-desk
 
 
-.. image:: images/monitoring.png
-   :alt: image of monitoring
-   :align: left
-
-.. _monitoring-plugins:
-
-Monitoring: Nagios plugins
---------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   check_ldap_dn
-   check_ldap_time
-   check_ldap_syncrepl_status
-   check_ldap_query
-   check_ldap_monitor
-   check_ldap_monitor_389ds
-   check_lmdb_usage
-   restart_slapd
-
-
 .. image:: images/statistics.png
    :alt: image of statistics
    :align: left
-
-.. _statistics:
 
 Statistics with Cacti
 ---------------------
@@ -154,8 +144,6 @@ Statistics with Cacti
 .. image:: images/script.png
    :alt: image of script
    :align: left
-
-.. _ldap-scripts:
 
 LDAP scripts
 ------------

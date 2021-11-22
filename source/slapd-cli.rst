@@ -1,6 +1,6 @@
-****************
-slapd-cli
-****************
+****************************
+Manage OpenLDAP with the CLI
+****************************
 
 Presentation
 ============
@@ -25,7 +25,7 @@ The main features are:
    * import test data / test configuration
 
 .. TIP::
-   This script is included in debian and red-hat OpenLDAP LTB packages
+   This script is included by default in debian and red-hat OpenLDAP LTB packages. You can also get it from the `main repository <https://github.com/ltb-project/slapd-cli>`_.
 
 
 Usage of slapd-cli
