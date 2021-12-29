@@ -17,12 +17,12 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'project-ltb'
+project = 'LDAP Tool Box project'
 copyright = '2021, LTB Project'
 author = 'David Coutadeur'
 
 # The full version, including alpha/beta/rc tags
-release = 'LTB Project'
+release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -57,4 +57,5 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 html_favicon = 'images/favicon.ico'
+html_logo = 'images/ltb-logo.png'
 

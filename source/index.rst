@@ -4,13 +4,13 @@
    contain the root `toctree` directive.
 
 
-Welcome to project-ltb's documentation
-======================================
+LDAP Tool Box project documentation
+===================================
 
 
-.. image:: images/ltb-logo.png
-   :alt: image of LTB logo
-   :align: left
+.. image:: images/ltb-project-long.png
+   :alt: LTB logo
+   :align: center
 
 Presentation
 ------------
@@ -25,10 +25,6 @@ LTB (LDAP Tool Box) project is a set of tools around LDAP. It is made of:
 
 
 
-.. image:: images/packaging.png
-   :alt: image of openldap packaging
-   :align: left
-
 Install OpenLDAP LTB
 --------------------
 
@@ -39,11 +35,6 @@ Install OpenLDAP LTB
    openldap-deb
 
 
-
-.. image:: images/manage.png
-   :alt: image of toothed wheel
-   :align: left
-
 Manage OpenLDAP LTB
 -------------------
 
@@ -52,13 +43,6 @@ Manage OpenLDAP LTB
 
    slapd-cli
 
-
-|
-
-
-.. image:: images/monitoring.png
-   :alt: image of monitoring
-   :align: left
 
 Monitor your directory
 ----------------------
@@ -78,11 +62,6 @@ You can use the following Nagios plugins to monitor your directory:
    restart_slapd
 
 
-.. image:: images/question.png
-   :alt: image of howto
-   :align: left
-
-
 General LDAP Howtos
 -------------------
 
@@ -96,11 +75,6 @@ General LDAP Howtos
    openldap_ssl_tls_mutual_authentication
 
 
-.. image:: images/plugin.png
-   :alt: image of plugin
-   :align: left
-
-
 OpenLDAP overlays and extensions
 --------------------------------
 
@@ -109,11 +83,6 @@ OpenLDAP overlays and extensions
 
    openldap-ppm
    openldap-noopsrch
-
-
-.. image:: images/webapplication.png
-   :alt: image of web application
-   :align: left
 
 
 Web applications
@@ -126,11 +95,6 @@ Web applications
    white-pages
    service-desk
 
-
-.. image:: images/statistics.png
-   :alt: image of statistics
-   :align: left
-
 Statistics with Cacti
 ---------------------
 
@@ -140,10 +104,6 @@ Statistics with Cacti
    ldap_response_time
    openldap_operations
 
-
-.. image:: images/script.png
-   :alt: image of script
-   :align: left
 
 LDAP scripts
 ------------
@@ -155,8 +115,6 @@ LDAP scripts
    cleanldapbrokenaliases
    file2ldif
    ldap-stats
-
-
 
 
 .. raw:: html
