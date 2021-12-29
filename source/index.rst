@@ -17,39 +17,25 @@ Presentation
 
 LTB (LDAP Tool Box) project is a set of tools around LDAP. It is made of:
 
-* :doc:`OpenLDAP packages and overlays <openldap-packages>` 
-* documentation for OpenLDAP and overlays packages
+* OpenLDAP packages and overlays
 * Plugins for monitoring and statistics
-* web applications: Self service password, white pages and service desk
+* Web applications: Self Service Password, White Pages and Service Desk
+* LDAP scripts
 * LDAP Howtos
 
 
-
-Install OpenLDAP LTB
---------------------
-
 .. toctree::
+   :caption: OpenLDAP LTB
    :maxdepth: 1
 
+   openldap-packages
    openldap-rpm
    openldap-deb
-
-
-Manage OpenLDAP LTB
--------------------
-
-.. toctree::
-   :maxdepth: 1
-
    slapd-cli
 
 
-Monitor your directory
-----------------------
-
-You can use the following Nagios plugins to monitor your directory:
-
 .. toctree::
+   :caption: Monitoring
    :maxdepth: 1
 
    check_ldap_dn
@@ -60,12 +46,12 @@ You can use the following Nagios plugins to monitor your directory:
    check_ldap_monitor_389ds
    check_lmdb_usage
    restart_slapd
+   ldap_response_time
+   openldap_operations
 
-
-General LDAP Howtos
--------------------
 
 .. toctree::
+   :caption: LDAP Howtos
    :maxdepth: 1
 
    auth_ldap_best_practices
@@ -75,60 +61,28 @@ General LDAP Howtos
    openldap_ssl_tls_mutual_authentication
 
 
-OpenLDAP overlays and extensions
---------------------------------
-
 .. toctree::
+   :caption: OpenLDAP overlays and extensions
    :maxdepth: 1
 
    openldap-ppm
    openldap-noopsrch
 
 
-Web applications
-----------------
-
 .. toctree::
+   :caption: Web applications
    :maxdepth: 1
 
    self-service-password
    white-pages
    service-desk
 
-Statistics with Cacti
----------------------
 
 .. toctree::
-   :maxdepth: 1
-
-   ldap_response_time
-   openldap_operations
-
-
-LDAP scripts
-------------
-
-.. toctree::
+   :caption: LDAP scripts
    :maxdepth: 1
 
    checkldappwdexpiration
    cleanldapbrokenaliases
    file2ldif
    ldap-stats
-
-
-.. raw:: html
-
-   <!--
-   Hook for all files to be virtually included in a toctree
-
-.. toctree::
-   :maxdepth: 1
-
-   openldap-packages
-
-
-.. raw:: html
-
-   -->
-
