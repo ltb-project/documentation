@@ -42,21 +42,6 @@ Documentation
 
 * `Latest release documentation <https://self-service-password.readthedocs.io/en/stable/>`_
 
-All releases:
-
-    * `Self Service Password v1.4 <https://self-service-password.readthedocs.io/en/v1.4/>`_
-    * `Self Service Password v1.3 <https://ltb-project.org/documentation/self-service-password/1.3/start>`_
-    * `Self Service Password v1.2 <https://ltb-project.org/documentation/self-service-password/1.2/start>`_
-    * `Self Service Password v1.1 <https://ltb-project.org/documentation/self-service-password/1.1/start>`_
-    * `Self Service Password v1.0 <https://ltb-project.org/documentation/self-service-password/1.0/start>`_
-    * `Self Service Password v0.9 <https://ltb-project.org/documentation/self-service-password/0.9/start>`_
-    * `Self Service Password v0.8 <https://ltb-project.org/documentation/self-service-password/0.8/start>`_
-    * `Self Service Password v0.7 <https://ltb-project.org/documentation/self-service-password/0.7/start>`_
-    * `Self Service Password v0.6 <https://ltb-project.org/documentation/self-service-password/0.6/start>`_
-    * `Self Service Password v0.5 <https://ltb-project.org/documentation/self-service-password/0.5/start>`_
-    * `Self Service Password v0.4 <https://ltb-project.org/documentation/self-service-password/0.4/start>`_
-    * `Self Service Password v0.3 <https://ltb-project.org/documentation/self-service-password/0.3/start>`_
-
 Screenshots
 ===========
 

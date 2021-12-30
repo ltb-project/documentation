@@ -28,21 +28,10 @@ It has the following features:
    Vote for this software: <span id="a2itemwidget"></span><br/>
 
 
-Demonstration
-=============
-
-Check `Star Pages <http://ltb-project.org/star-pages/>`_, an online demonstration of LDAP Tool Box White Pages.
-
 Documentation
 =============
 
-* `Latest release documentation <https://ltb-project.org/documentation/white-pages/latest/start>`_
-
-All releases:
-    * `White Pages v0.4 <https://white-pages.readthedocs.io/en/latest/>`_ (dev)
-    * `White Pages v0.3 <https://ltb-project.org/documentation/white-pages/0.3/start>`_ (stable)
-    * `White Pages v0.2 <https://ltb-project.org/documentation/white-pages/0.2/start>`_
-    * `White Pages v0.1 <https://ltb-project.org/documentation/white-pages/0.1/start>`_
+* `Latest release documentation <https://white-pages.readthedocs.io/en/latest/>`_
 
 Screenshots
 ===========
