@@ -5,12 +5,13 @@ Install OpenLDAP LTB for Debian / Ubuntu
 Installation
 ============
 
-APT repository
---------------
+Declare APT repository
+----------------------
 
-.. TIP::
+.. tip::
     You need to set up the repository for your version:
 
+    * stretch (debian 9)
     * buster (debian 10)
     * bullseye (debian 11)
 
@@ -30,18 +31,29 @@ Configure the repository:
 
     # vi /etc/apt/sources.list.d/ltb-project.list
 
-For OpenLDAP 2.4:
+* For OpenLDAP 2.4:
+
+.. tip::
+
+    Available distributions are ``stretch`` and ``buster``. Here is the configuration for ``buster``.
 
 ::
 
-    deb [arch=amd64] https://ltb-project.org/debian/bullseye bullseye main
+    deb [arch=amd64] https://ltb-project.org/debian/buster buster main
 
-For OpenLDAP 2.5:
+* For OpenLDAP 2.5:
+
+.. tip::
+
+    Available distributions are ``buster`` and ``bullseye``. Here is the configuration for ``bullseye``.
 
 ::
 
     deb [arch=amd64] https://ltb-project.org/debian/openldap25/bullseye bullseye main
 
+
+Import GPG key
+--------------
 
 The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
 
@@ -57,12 +69,16 @@ Then update:
 
     # apt update
 
+Install packages
+----------------
+
 You are now ready to install:
 
 .. code-block:: console
 
-    # apt install openldap-ltb
+    # apt install openldap-ltb openldap-ltb-contrib-overlays openldap-ltb-mdb-utils
 
+See :doc:`OpenLDAP packages<openldap-packages>` to know available packages.
 
 Rebuild debian packages
 =======================

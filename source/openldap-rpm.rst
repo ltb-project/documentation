@@ -5,11 +5,10 @@ Install OpenLDAP LTB for Red-Hat / CentOS
 Installation
 ============
 
-
-Yum repository
+Declare YUM repository
 --------------
 
-.. TIP::
+.. tip::
    Yum repositories are available for this release versions ($releasever):
 
    * 7/7Server
@@ -21,7 +20,7 @@ Configure the yum repository:
 
     # vi /etc/yum.repos.d/ltb-project.repo
 
-For OpenLDAP 2.4:
+* For OpenLDAP 2.4:
 
 ::
 
@@ -32,7 +31,7 @@ For OpenLDAP 2.4:
     gpgcheck=1
     gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LTB-project
 
-For OpenLDAP 2.5:
+* For OpenLDAP 2.5:
 
 ::
 
@@ -42,6 +41,9 @@ For OpenLDAP 2.5:
     enabled=1
     gpgcheck=1
     gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LTB-project
+
+Import GPG key
+--------------
 
 The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
 
@@ -57,12 +59,16 @@ Then update:
 
     # yum update
 
+Install packages
+----------------
+
 You are now ready to install:
 
 .. code-block:: console
 
-    # yum install openldap-ltb
+    # yum install openldap-ltb openldap-ltb-contrib-overlays openldap-ltb-mdb-utils
 
+See :doc:`OpenLDAP packages<openldap-packages>` to know available packages.
 
 Manual download
 ---------------
