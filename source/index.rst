@@ -11,11 +11,12 @@ LDAP Tool Box project documentation
 .. image:: images/ltb-project-long.png
    :alt: LTB logo
    :align: center
+   :target: https://www.ltb-project.org
 
 Presentation
 ------------
 
-LTB (LDAP Tool Box) project is a set of tools around LDAP. It is made of:
+`LTB (LDAP Tool Box) project <https://www.ltb-project.org>`_ is a set of tools around LDAP. It is made of:
 
 * OpenLDAP packages and overlays
 * Plugins for monitoring and statistics
