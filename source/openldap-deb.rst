@@ -61,7 +61,7 @@ To import this key:
 
 .. code-block:: console
 
-    # curl https://ltb-project.org/_static/RPM-GPG-KEY-LTB-project | apt-key add -
+    # curl https://ltb-project.org/documenation/_static/RPM-GPG-KEY-LTB-project | apt-key add -
 
 Then update:
 

@@ -51,7 +51,7 @@ To import this key:
 
 .. code-block:: console
 
-    # rpm --import https://ltb-project.org/_static/RPM-GPG-KEY-LTB-project
+    # rpm --import https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project
 
 Then update:
 
@@ -81,7 +81,7 @@ To import this key:
 
 .. code-block:: console
 
-    # rpm --import https://ltb-project.org/_static/RPM-GPG-KEY-LTB-project
+    # rpm --import https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project
 
 
 Just run this command to install them (with dependency management):
