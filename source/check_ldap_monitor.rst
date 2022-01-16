@@ -55,8 +55,10 @@ Mandatory Options
          * **totalsearch**: total SEARCH operations
          * **totalunbind**: total UNBIND operations
          * **mdbpagesmax**: maximum pages in MDB database
-         * **mdbpageused**: used pages in MDB database
+         * **mdbpagesused**: used pages in MDB database
          * **mdbpagesfree**: free pages in MDB database
+         * **mdbpagesusedrelative**: percentage of used pages in MDB database
+         * **mdbpagesfreerelative**: percentage of free pages in MDB database
 
 Other options
 
@@ -78,3 +80,9 @@ Other options
 
 .. include:: download-plugins.rst
 
+For example:
+
+.. code-block:: console
+
+    $ perl check_ldap_monitor.pl -H ldap+tls://ldap.example.org -Duid=monitor,cn=users,dc=example,dc=org -Pabc -b "cn=Database 2,cn=Databases,cn=Monitor"  -T mdbpagesfreerelative -w 90 -c 95  -s base -m greater
+    OK - 19.2708333333333 percent of used pages in MDB database returned
