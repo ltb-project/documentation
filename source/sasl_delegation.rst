@@ -1,22 +1,22 @@
 ************************************
-Pass-Trough authentication with SASL
+Pass-Through authentication with SASL
 ************************************
 
 Presentation
 ============
 
-Pass-Trough authentication is a mechanism used by some LDAP directories to delegate authentication operations (BIND) to other backends.
+Pass-Through authentication is a mechanism used by some LDAP directories to delegate authentication operations (BIND) to other backends.
 
 It should be distinguished from the external authentication methods, that are managed by the LDAP client to authenticate on a trusted source and then connect to the directory.
 
-Pass-Trough authentication is purely transparent for LDAP clients, as they send standard authentication operations to the LDAP directory, which will then handle the delegation and forward the response to the client, as if the authentication had occured locally.
+Pass-Through authentication is purely transparent for LDAP clients, as they send standard authentication operations to the LDAP directory, which will then handle the delegation and forward the response to the client, as if the authentication had occured locally.
 
-A real world use case is the coexistence between OpenLDAP and Active Directory: a notable scenario could be to let the password into AD, and configure a pass-trough authentication between OpenLDAP and AD. With this setup, authentications done on the OpenLDAP are actually delegated to Active Directory.
+A real world use case is the coexistence between OpenLDAP and Active Directory: a notable scenario could be to let the password into AD, and configure a pass-through authentication between OpenLDAP and AD. With this setup, authentications done on the OpenLDAP are actually delegated to Active Directory.
 
 Technical description
 =====================
 
-OpenLDAP is known to be able to use pass-trough authentication. This option should be compiled into it. If not, get the sources and use this option in the configure step::
+OpenLDAP is known to be able to use pass-through authentication. This option should be compiled into it. If not, get the sources and use this option in the configure step::
 
     ./configure --enable-spasswd --with-cyrus-sasl
 
@@ -26,7 +26,7 @@ This option is enabled by default in LDAP Tool Box OpenLDAP packages
 
 Then you need the saslauthd daemon, which is available on most Linux distributions.
 
-The pass-trough authentication will then work like this:
+The pass-through authentication will then work like this:
 
     1. A BIND operation is received by OpenLDAP with parameters DN1 and PWD1
     2. OpenLDAP get DN1 entry and read userPassword attribute
@@ -37,7 +37,7 @@ The pass-trough authentication will then work like this:
     7. SASL returns authentication status to OpenLDAP (yes/no)
     8. OpenLDAP returns response to the LDAP client
 
-Pass-Trough authentication on one LDAP directory
+Pass-Through authentication on one LDAP directory
 ================================================
 
 .. image:: images/sasl_delegation.png
@@ -186,7 +186,7 @@ Restart OpenLDAP::
 Step 5: be proud
 ----------------
 
-Now we can use the pass-trough authentication. To test it, you need an account in the backend, for example::
+Now we can use the pass-through authentication. To test it, you need an account in the backend, for example::
 
     # Clement OUDOT, DomainUsers, example;com
     dn: CN=Clement OUDOT,OU=DomainUsers,DC=example,DC=com
@@ -244,7 +244,7 @@ Now you can bind to OpenLDAP with AD password::
 
     ldapsearch -x -H ldap://ldap.example.com -b dc=example,dc=com -D uid=coudot,ou=users,dc=example,dc=com -w password
 
-Pass-Trough authentication on several LDAP directories - with OpenLDAP meta backend
+Pass-Through authentication on several LDAP directories - with OpenLDAP meta backend
 ===================================================================================
 
 .. image:: images/sasl_delegation_multi_ad.png
@@ -255,7 +255,7 @@ Pass-Trough authentication on several LDAP directories - with OpenLDAP meta back
    You need to install all the components of the previous chapter. This chapter will only describe the evolutions to do.
 
 .. NOTE::
-   This chapter explains how to do Pass-Trough authentication on several LDAP backends with OpenLDAP meta backend. This adds complexity as SASL daemon can only be configured to connect to a single remote directory, and OpenLDAP cannot use several SASL authentication daemons. The solution described here use a meta directory between SASL daemon and remote directories. The choice of the backend to contact will be done in the SASL password value, for example ``{SASL}user@LDAP1`` and ``{SASL}user@LDAP2``.
+   This chapter explains how to do Pass-Through authentication on several LDAP backends with OpenLDAP meta backend. This adds complexity as SASL daemon can only be configured to connect to a single remote directory, and OpenLDAP cannot use several SASL authentication daemons. The solution described here use a meta directory between SASL daemon and remote directories. The choice of the backend to contact will be done in the SASL password value, for example ``{SASL}user@LDAP1`` and ``{SASL}user@LDAP2``.
 
 Step 1: create the meta directory
 ---------------------------------
@@ -320,7 +320,7 @@ Adapt SASL daemon configuration to contact the meta directory::
 
 The interesting changes are:
 
-    :ldap_search_base: we use the domain component (``%d``) to match to destination backend, trough the meta directory DIT
+    :ldap_search_base: we use the domain component (``%d``) to match to destination backend, through the meta directory DIT
     :ldap_filter: we mix the filters with an OR filter, so that the user (``%U``) will be found whatever backend is called
 
 Restart saslauthd::
@@ -330,13 +330,13 @@ Restart saslauthd::
 Step 3: be really proud
 -----------------------
 
-Do the tests of the first chapter, with different users in LDAP1 and LDAP2, and appropriate users in the main OpenLDAP server. By playing with the SASL password value, you are able to choose the authentication backend for pass-trough authentication.
+Do the tests of the first chapter, with different users in LDAP1 and LDAP2, and appropriate users in the main OpenLDAP server. By playing with the SASL password value, you are able to choose the authentication backend for pass-through authentication.
 
-Pass-Trough authentication on several LDAP directories - with OpenLDAP ldap backend
+Pass-Through authentication on several LDAP directories - with OpenLDAP ldap backend
 ===================================================================================
 
 .. NOTE::
-   This chapter explains how to do Pass-Trough authentication on several LDAP backends with OpenLDAP ldap backend. The advantage over the meta backend is the possibility to use the rwm overlay with specific configuration for a backend directory, and for those using the cn=config backend, to manage the configuration into it (as these lines are written, backend meta is not supported in cn=config).
+   This chapter explains how to do Pass-Through authentication on several LDAP backends with OpenLDAP ldap backend. The advantage over the meta backend is the possibility to use the rwm overlay with specific configuration for a backend directory, and for those using the cn=config backend, to manage the configuration into it (as these lines are written, backend meta is not supported in cn=config).
 
 Step 1: create the proxy directory
 ----------------------------------
@@ -408,7 +408,7 @@ Adapt SASL daemon configuration to contact the meta directory::
     ldap_version: 3
     ldap_auth_method: bind
 
-We have just changed the ``ldap_search_base`` parameter to use the domain component (``%d``) to match to destination backend, trough the meta directory DIT. You can keep a simple ``ldap_filter`` parameter, as we use rwm overlay to match the login attribute in both directories.
+We have just changed the ``ldap_search_base`` parameter to use the domain component (``%d``) to match to destination backend, through the meta directory DIT. You can keep a simple ``ldap_filter`` parameter, as we use rwm overlay to match the login attribute in both directories.
 
 Restart saslauthd::
 
@@ -417,7 +417,7 @@ Restart saslauthd::
 Step 3: be really proud (indeed, you are awesome)
 -------------------------------------------------
 
-Do the tests of the first chapter, with different users in LDAP1 and LDAP2, and appropriate users in the main OpenLDAP server. By playing with the SASL password value, you are able to choose the authentication backend for pass-trough authentication.
+Do the tests of the first chapter, with different users in LDAP1 and LDAP2, and appropriate users in the main OpenLDAP server. By playing with the SASL password value, you are able to choose the authentication backend for pass-through authentication.
 
 
 
