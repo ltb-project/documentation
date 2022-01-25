@@ -60,6 +60,7 @@ Presentation
    sasl_delegation
    migrate_slapd_conf_cn_config
    openldap_ssl_tls_mutual_authentication
+   migrate_openldap_ltb_24_openldap_ltb_25
 
 
 .. toctree::
