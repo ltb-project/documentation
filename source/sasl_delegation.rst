@@ -1,6 +1,6 @@
-************************************
+*************************************
 Pass-Through authentication with SASL
-************************************
+*************************************
 
 Presentation
 ============
@@ -38,7 +38,7 @@ The pass-through authentication will then work like this:
     8. OpenLDAP returns response to the LDAP client
 
 Pass-Through authentication on one LDAP directory
-================================================
+=================================================
 
 .. image:: images/sasl_delegation.png
    :alt: schema of SASL delegation
@@ -245,7 +245,7 @@ Now you can bind to OpenLDAP with AD password::
     ldapsearch -x -H ldap://ldap.example.com -b dc=example,dc=com -D uid=coudot,ou=users,dc=example,dc=com -w password
 
 Pass-Through authentication on several LDAP directories - with OpenLDAP meta backend
-===================================================================================
+====================================================================================
 
 .. image:: images/sasl_delegation_multi_ad.png
    :alt: schema of SASL delegation on several directories
@@ -333,7 +333,7 @@ Step 3: be really proud
 Do the tests of the first chapter, with different users in LDAP1 and LDAP2, and appropriate users in the main OpenLDAP server. By playing with the SASL password value, you are able to choose the authentication backend for pass-through authentication.
 
 Pass-Through authentication on several LDAP directories - with OpenLDAP ldap backend
-===================================================================================
+====================================================================================
 
 .. NOTE::
    This chapter explains how to do Pass-Through authentication on several LDAP backends with OpenLDAP ldap backend. The advantage over the meta backend is the possibility to use the rwm overlay with specific configuration for a backend directory, and for those using the cn=config backend, to manage the configuration into it (as these lines are written, backend meta is not supported in cn=config).

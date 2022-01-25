@@ -6,7 +6,7 @@ Installation
 ============
 
 Declare YUM repository
---------------
+----------------------
 
 .. tip::
    Yum repositories are available for this release versions ($releasever):
