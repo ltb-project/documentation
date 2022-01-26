@@ -6,7 +6,7 @@
 
 To build documentation locally:
 ```
-make html
+make clean html
 ```
 
 ## Online documentation

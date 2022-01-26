@@ -5,6 +5,26 @@ Install OpenLDAP LTB for Debian / Ubuntu
 Installation
 ============
 
+
+Import GPG key
+--------------
+
+The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
+
+To import this key:
+
+.. code-block:: console
+
+    # apt install curl
+    # curl https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project | gpg --dearmor > /usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg
+
+
+.. tip::
+    On old systems, you can also use `apt-key` command::
+
+    # curl https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project | apt-key add -
+
+
 Declare APT repository
 ----------------------
 
@@ -39,7 +59,7 @@ Configure the repository:
 
 ::
 
-    deb [arch=amd64] https://ltb-project.org/debian/buster buster main
+    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/buster buster main
 
 * For OpenLDAP 2.5:
 
@@ -49,25 +69,15 @@ Configure the repository:
 
 ::
 
-    deb [arch=amd64] https://ltb-project.org/debian/openldap25/bullseye bullseye main
+    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/openldap25/bullseye bullseye main
 
-
-Import GPG key
---------------
-
-The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
-
-To import this key: 
-
-.. code-block:: console
-
-    # curl https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project | apt-key add -
 
 Then update:
 
 .. code-block:: console
 
     # apt update
+
 
 Install packages
 ----------------
