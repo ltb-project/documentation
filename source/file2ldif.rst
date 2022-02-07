@@ -282,3 +282,6 @@ Apply changes in your directory:
 
    $ ldapmodify -D cn=manager,dc=example,dc=com -W -f justice.ldif 
 
+
+.. include:: download-scripts.rst
+

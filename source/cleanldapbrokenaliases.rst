@@ -43,3 +43,6 @@ Edit the script to adapt configuration:
 
 The PATH must be set to include all shell commands used by the script.
 
+
+.. include:: download-scripts.rst
+

@@ -138,3 +138,5 @@ Sample output
       1           cn=admin,dc=example,dc=com
 
 
+.. include:: download-scripts.rst
+

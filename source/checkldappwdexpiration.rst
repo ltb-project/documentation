@@ -92,3 +92,5 @@ Date localization: you can change the lang by modifying this line:
     export LC_ALL=en_US.UTF-8
 
 
+.. include:: download-scripts.rst
+
