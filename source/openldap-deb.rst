@@ -25,6 +25,8 @@ To import this key:
     # curl https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project | apt-key add -
 
 
+.. _declare-apt-repository:
+
 Declare APT repository
 ----------------------
 

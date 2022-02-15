@@ -33,6 +33,7 @@ Presentation
    openldap-rpm
    openldap-deb
    slapd-cli
+   ansible-role
 
 
 .. toctree::

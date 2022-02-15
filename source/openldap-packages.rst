@@ -1,3 +1,5 @@
+.. _openldap-packages:
+
 OpenLDAP packages
 =================
 
