@@ -56,6 +56,7 @@ Options:
 
 -s                       Split attributes found used in searches
 -D                       Use RFC5424 date format
+--log26                  Use OpenLDAP 2.6 log format
 
 Sample output
 =============
