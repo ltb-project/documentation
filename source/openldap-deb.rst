@@ -15,7 +15,7 @@ To import this key:
 
 .. code-block:: console
 
-    # apt install curl
+    # apt install curl gpg
     # curl https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project | gpg --dearmor > /usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg
 
 
