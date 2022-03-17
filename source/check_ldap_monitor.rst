@@ -54,11 +54,11 @@ Mandatory Options
          * **totalmodrdn**: total MODRDN operations
          * **totalsearch**: total SEARCH operations
          * **totalunbind**: total UNBIND operations
-         * **mdbpagesmax**: maximum pages in MDB database
-         * **mdbpagesused**: used pages in MDB database
-         * **mdbpagesfree**: free pages in MDB database
-         * **mdbpagesusedrelative**: percentage of used pages in MDB database
-         * **mdbpagesfreerelative**: percentage of free pages in MDB database
+         * **mdbpagesmax**: maximum pages in MDB database (see :doc:`check lmdb usage plugin<check_lmdb_usage>`)
+         * **mdbpagesused**: used pages in MDB database (see :doc:`check lmdb usage plugin<check_lmdb_usage>`)
+         * **mdbpagesfree**: free pages in MDB database (see :doc:`check lmdb usage plugin<check_lmdb_usage>`)
+         * **mdbpagesusedrelative**: percentage of used pages in MDB database (see :doc:`check lmdb usage plugin<check_lmdb_usage>`)
+         * **mdbpagesfreerelative**: percentage of free pages in MDB database (see :doc:`check lmdb usage plugin<check_lmdb_usage>`)
 
 Other options
 

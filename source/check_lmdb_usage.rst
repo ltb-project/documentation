@@ -7,6 +7,16 @@ Presentation
 
 This plugin checks percent of pages used and pages free in an LMDB database.
 
+The calculation is based on this formula:
+
+.. image:: images/mdb_stat.png
+   :alt: mdb_stat graphic
+   :align: center
+
+.. math::
+
+$$really\\,used = \\frac{ pages\\,used - pages\\,free}{max\\,pages}$$
+
 For example:
 
 .. code-block:: console
