@@ -84,5 +84,5 @@ For example:
 
 .. code-block:: console
 
-    $ perl check_ldap_monitor.pl -H ldap+tls://ldap.example.org -Duid=monitor,cn=users,dc=example,dc=org -Pabc -b "cn=Database 2,cn=Databases,cn=Monitor"  -T mdbpagesfreerelative -w 90 -c 95  -s base -m greater
-    OK - 19.2708333333333 percent of used pages in MDB database returned
+    $ perl check_ldap_monitor.pl -H 'ldap+tls://ldap.example.org' -D 'cn=monitor' -P 'secret' -b "cn=monitor" -T mdbpagesfreerelative -w 20 -c 10 -m lesser
+    OK - 34.375 percent of free pages in MDB database returned

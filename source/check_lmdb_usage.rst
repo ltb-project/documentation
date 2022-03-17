@@ -21,8 +21,8 @@ For example:
 
 .. code-block:: console
 
-    $ perl check_lmdb_usage.pl -H /var/lib/ldap/ -w 3 -c 1 -r
-    OK - 66% pages used / 16% pages free
+    $ perl check_lmdb_usage.pl -H /usr/local/openldap/var/openldap-data -w 30 -c 20 -r
+    OK - 65% pages used / 34% pages free
 
 With performance data, it allows to create graph to follow evolution of this indicator.
 
