@@ -5,13 +5,9 @@ Pass-Through authentication with SASL
 Presentation
 ============
 
-Pass-Through authentication is a mechanism used by some LDAP directories to delegate authentication operations (BIND) to other backends.
 
-It should be distinguished from the external authentication methods, that are managed by the LDAP client to authenticate on a trusted source and then connect to the directory.
+.. include:: delegation.rst
 
-Pass-Through authentication is purely transparent for LDAP clients, as they send standard authentication operations to the LDAP directory, which will then handle the delegation and forward the response to the client, as if the authentication had occured locally.
-
-A real world use case is the coexistence between OpenLDAP and Active Directory: a notable scenario could be to let the password into AD, and configure a pass-through authentication between OpenLDAP and AD. With this setup, authentications done on the OpenLDAP are actually delegated to Active Directory.
 
 Technical description
 =====================
