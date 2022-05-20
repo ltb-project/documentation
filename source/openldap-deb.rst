@@ -73,6 +73,15 @@ Configure the repository:
 
     deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/openldap25/bullseye bullseye main
 
+* For OpenLDAP 2.6:
+
+.. tip::
+
+    Available distributions are ``buster`` and ``bullseye``. Here is the configuration for ``bullseye``.
+
+::
+
+    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/openldap26/bullseye bullseye main
 
 Then update:
 
