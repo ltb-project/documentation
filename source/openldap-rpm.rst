@@ -42,6 +42,17 @@ Configure the yum repository:
     gpgcheck=1
     gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LTB-project
 
+* For OpenLDAP 2.6:
+
+::
+
+    [ltb-project]
+    name=LTB project packages
+    baseurl=https://ltb-project.org/rpm/openldap26/$releasever/$basearch
+    enabled=1
+    gpgcheck=1
+    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-LTB-project
+
 Import GPG key
 --------------
 
