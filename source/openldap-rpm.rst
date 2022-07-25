@@ -64,12 +64,6 @@ To import this key:
 
     # rpm --import https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project
 
-Then update:
-
-.. code-block:: console
-
-    # yum update
-
 Install packages
 ----------------
 
