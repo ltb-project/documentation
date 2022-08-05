@@ -66,6 +66,7 @@ The main OpenLDAP package includes:
   * **translucent**: Translucent Proxy
   * **unique**: Attribute Uniqueness
   * **valsort**: Value Sorting
+  * **ppm** (Password Policy Module): extension to the password policy overlay
 
 
 The contrib-overlay package includes these additional overlays:
@@ -78,7 +79,6 @@ The contrib-overlay package includes these additional overlays:
 * **pw-pbkdf2**: allows PBKDF2 hash scheme
 * **pw-sha2**: allow SHA2 hash scheme
 * **smbk5pwd**: update Kerberos keys and Samba password hashes (without Heimdal Kerberos support)
-* **ppm**: extend the password policy with new criteria
 * **variant**: share values between entries
 * **vc**: implements the LDAP "Verify Credentials" extended operation
 
