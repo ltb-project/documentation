@@ -36,7 +36,7 @@ The script can be launched like this::
     slapd-cli action [optional arguments]
 
 .. TIP::
-   In OpenLDAP LTB packages, the script is available in ``/usr/local/openldap/sbin/slapd-ci``.
+   In OpenLDAP LTB packages, the script is available in ``/usr/local/openldap/sbin/slapd-cli``.
    Anyway, with the PATH updated by ``/etc/profile.d/openldap-profile.sh``, you can just run ``slapd-cli``.
 
 Action is a keyword between:
