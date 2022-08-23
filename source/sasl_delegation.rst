@@ -70,6 +70,14 @@ First, check that your SASL daemon supports LDAP::
 
 If not, reinstall an LDAP-aware saslauthd daemon.
 
+For RHEL::
+
+    yum install cyrus-sasl
+
+For Debian::
+
+    apt install sasl-bin
+
 Then to activate LDAP as SASL mechanism on Red-Hat systems::
 
     vi /etc/sysconfig/saslauthd
