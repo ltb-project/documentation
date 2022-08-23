@@ -76,7 +76,7 @@ For RHEL::
 
 For Debian::
 
-    apt install sasl-bin
+    apt install sasl2-bin
 
 Then to activate LDAP as SASL mechanism on Red-Hat systems::
 
@@ -171,7 +171,7 @@ The communication between the two daemons are done through a mutex, configured l
     pwcheck_method: saslauthd
     saslauthd_path: /var/run/saslauthd/mux
 
-Add OpenLDAP user to sasl group (adapt names to your distribution settings)::
+Add OpenLDAP user to sasl group (adapt names to your distribution settings, for example ``saslauth`` for RHEL)::
 
     usermod -a -G sasl ldap
 
