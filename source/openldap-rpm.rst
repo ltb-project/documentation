@@ -5,6 +5,18 @@ Install OpenLDAP LTB for Red-Hat / CentOS
 Installation
 ============
 
+Enable the EPEL repository
+--------------------------
+
+The LTB packages depend on packages that are only available in the
+`EPEL <https://docs.fedoraproject.org/en-US/epel/>`_ repository ("Extra
+Packages for Enterprise Linux"). You must enable the EPEL repository before
+installing LTB packages.
+
+The `EPEL Quickstart
+<https://docs.fedoraproject.org/en-US/epel/#_quickstart>`_ provides
+instructions for installing EPEL on RHEL and CentOS 7 and 8.
+
 Declare YUM repository
 ----------------------
 
