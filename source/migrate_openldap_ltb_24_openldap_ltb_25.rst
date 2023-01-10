@@ -80,11 +80,32 @@ Some changes are required in your configuration, depending on which feature to y
 
 Edit the configuration backup LDIF file you generated at the first step:
 
-* Remove built-in schema definition in ``cn=schema,cn=config`` entry
-* Remove ``ppolicy`` schema if present (it will now be loaded by the overlay)
+* Remove built-in schema definition in ``cn=schema,cn=config`` entry, keep only the 3 first lines:
+
+.. code-block::
+
+   dn: cn=schema,cn=config
+   objectClass: olcSchemaConfig
+   cn: schema
+
+* Remove ``ppolicy`` schema if present (it will now be loaded by the overlay), but do not remove the overlay if it was already in your configuration
 * Replace parameter ``olcMirrorMode`` by ``olcMultiProvider``
 * Replace BDB/HDB configuration by MDB if you were still using these backends
-* Load all backends and overlays in ``cn=modules,cn=config`` (they are no more compiled in the slapd binary)
+* Load all backends and overlays in ``cn=modules,cn=config`` (they are no more compiled in the slapd binary), for example:
+
+.. code-block::
+
+   dn: cn=module{0},cn=config
+   objectClass: olcModuleList
+   cn: module{0}
+   olcModulePath: /usr/local/openldap/lib64/:/usr/local/openldap/libexec/openldap/
+   olcModuleLoad: {0}lastbind
+   olcModuleLoad: {1}pw-sha2
+   olcModuleLoad: {2}pw-pbkdf2
+   olcModuleLoad: {4}ppolicy
+   olcModuleLoad: {5}back_mdb
+   olcModuleLoad: {6}dynlist
+   olcModuleLoad: {7}syncprov
 
 Restore the updated configuration:
 
