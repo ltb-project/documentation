@@ -82,7 +82,7 @@ Edit the configuration backup LDIF file you generated at the first step:
 
 * Remove built-in schema definition in ``cn=schema,cn=config`` entry, keep only the 3 first lines:
 
-.. code-block::
+.. code-block:: console
 
    dn: cn=schema,cn=config
    objectClass: olcSchemaConfig
@@ -93,7 +93,7 @@ Edit the configuration backup LDIF file you generated at the first step:
 * Replace BDB/HDB configuration by MDB if you were still using these backends
 * Load all backends and overlays in ``cn=modules,cn=config`` (they are no more compiled in the slapd binary), for example:
 
-.. code-block::
+.. code-block:: console
 
    dn: cn=module{0},cn=config
    objectClass: olcModuleList
@@ -106,6 +106,8 @@ Edit the configuration backup LDIF file you generated at the first step:
    olcModuleLoad: {5}back_mdb
    olcModuleLoad: {6}dynlist
    olcModuleLoad: {7}syncprov
+
+* Remove ``explockout`` overlay if you used it and configure ``pwdMinDelay`` and ``pwdMaxDelay`` in your password policy definition.
 
 Restore the updated configuration:
 
