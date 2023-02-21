@@ -15,7 +15,7 @@ installing LTB packages.
 
 The `EPEL Quickstart
 <https://docs.fedoraproject.org/en-US/epel/#_quickstart>`_ provides
-instructions for installing EPEL on RHEL and CentOS 7 and 8.
+instructions for installing EPEL on RHEL and derivatives.
 
 Declare YUM repository
 ----------------------
