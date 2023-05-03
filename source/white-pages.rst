@@ -37,6 +37,33 @@ Documentation
 Screenshots
 ===========
 
+Version 0.4
+-----------
+
+.. image:: images/wp_0_4_welcome.png
+   :alt: Screenshot of White Page 0.4: welcome
+
+.. image:: images/wp_0_4_directory.png
+   :alt: Screenshot of White Page 0.4: directory
+
+.. image:: images/wp_0_4_display.png
+   :alt: Screenshot of White Page 0.4: display
+
+.. image:: images/wp_0_4_advanced_search.png
+   :alt: Screenshot of White Page 0.4: advanced search
+
+.. image:: images/wp_0_4_gallery.png
+   :alt: Screenshot of White Page 0.4: gallery
+
+.. image:: images/wp_0_4_full_map.png
+   :alt: Screenshot of White Page 0.4: full map
+
+.. image:: images/wp_0_4_map.png
+   :alt: Screenshot of White Page 0.4: map
+
+.. image:: images/wp_0_4_search.png
+   :alt: Screenshot of White Page 0.4: search
+
 Version 0.3
 -----------
 
