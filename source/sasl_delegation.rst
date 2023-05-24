@@ -103,7 +103,7 @@ To activate LDAP as SASL mechanism on Debian systems::
     DESC="SASL Authentication Daemon"
     NAME="saslauthd"
     MECHANISMS="ldap"
-    MECH_OPTIONS="-O /etc/saslauthd.conf"
+    MECH_OPTIONS="/etc/saslauthd.conf"
     THREADS=5
     OPTIONS="-r -c -m /var/run/saslauthd"
 
