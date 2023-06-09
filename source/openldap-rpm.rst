@@ -25,6 +25,7 @@ Declare YUM repository
 
    * 7/7Server
    * 8/8Server
+   * 9/9Server (for OpenLDAP >= 2.5 only)
 
 Configure the yum repository:
 
