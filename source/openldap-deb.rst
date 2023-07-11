@@ -33,9 +33,9 @@ Declare APT repository
 .. tip::
     You need to set up the repository for your version:
 
-    * stretch (debian 9)
     * buster (debian 10)
     * bullseye (debian 11)
+    * bookworm (debian 12)
 
     For Ubuntu systems you can check which Debian release to choose in /etc/debian_version
 
@@ -53,35 +53,25 @@ Configure the repository:
 
     # vi /etc/apt/sources.list.d/ltb-project.list
 
-* For OpenLDAP 2.4:
-
-.. tip::
-
-    Available distributions are ``stretch`` and ``buster``. Here is the configuration for ``buster``.
-
-::
-
-    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/buster buster main
-
 * For OpenLDAP 2.5:
 
 .. tip::
 
-    Available distributions are ``buster`` and ``bullseye``. Here is the configuration for ``bullseye``.
+    Available distributions are ``buster``, ``bullseye``, and ``bookworm``. Here is the configuration for ``bookworm``.
 
 ::
 
-    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/openldap25/bullseye bullseye main
+    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/openldap25/bookworm bookworm main
 
 * For OpenLDAP 2.6:
 
 .. tip::
 
-    Available distributions are ``buster`` and ``bullseye``. Here is the configuration for ``bullseye``.
+    Available distributions are ``buster``, ``bullseye``, and ``bookworm``. Here is the configuration for ``bookworm``.
 
 ::
 
-    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/openldap26/bullseye bullseye main
+    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/openldap26/bookworm bookworm main
 
 Then update:
 
