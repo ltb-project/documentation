@@ -39,6 +39,8 @@ Declare APT repository
 
     For Ubuntu systems you can check which Debian release to choose in /etc/debian_version
 
+    Warning: Ubuntu 22.04 is not supported because ubuntu specific libsasl2-2 version is too old (currently: 2.1.27+dfsg2-3ubuntu1.2, but 2.1.28 is required)
+
 
 Authorize downloading of packages in https repositories:
 
