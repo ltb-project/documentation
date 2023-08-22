@@ -36,10 +36,12 @@ Declare APT repository
     * buster (debian 10)
     * bullseye (debian 11)
     * bookworm (debian 12)
+    * trixie (debian 13) (sid)
+    * jammy (ubuntu 22.04 LTS)
 
-    For Ubuntu systems you can check which Debian release to choose in /etc/debian_version
+    Note: For other Ubuntu systems you can check which Debian release to choose in /etc/debian_version
 
-    Warning: Ubuntu 22.04 is not supported because ubuntu specific libsasl2-2 version is too old (currently: 2.1.27+dfsg2-3ubuntu1.2, but 2.1.28 is required)
+    Warning: other Ubuntu systems may not be supported, due to possible incompatible dependency versions
 
 
 Authorize downloading of packages in https repositories:
@@ -59,7 +61,7 @@ Configure the repository:
 
 .. tip::
 
-    Available distributions are ``buster``, ``bullseye``, and ``bookworm``. Here is the configuration for ``bookworm``.
+    Available distributions are ``buster``, ``bullseye``, ``bookworm``, ``trixie`` and ``jammy``. Here is the configuration for ``bookworm``.
 
 ::
 
@@ -69,7 +71,7 @@ Configure the repository:
 
 .. tip::
 
-    Available distributions are ``buster``, ``bullseye``, and ``bookworm``. Here is the configuration for ``bookworm``.
+    Available distributions are ``buster``, ``bullseye``, ``bookworm``, ``trixie`` and ``jammy``. Here is the configuration for ``bookworm``.
 
 ::
 
