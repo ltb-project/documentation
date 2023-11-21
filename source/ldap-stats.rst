@@ -26,6 +26,8 @@ The ``ldap-stats.pl`` script will parse OpenLDAP log files and print some statis
      * Filters list
      * Searched attributes list
      * Bind DN list
+     * Longest request by qtime (time passed in queue)
+     * Longest request by etime (ellapsed time. TOTAL_TIME = qtime + etime)
 
 This script requires ``Getopt::Long`` perl module.
 
@@ -137,6 +139,23 @@ Sample output
     ----------    --------------------------------------------------------------
       1           uid=coudot,ou=users,dc=example,dc=com
       1           cn=admin,dc=example,dc=com
+
+    # qtime (s)       Operation
+    ------------      --------------------------------------------------------------
+      0.000009        2023-11-21T14:28:15.631738+01:00 parmenide slapd[1458]: conn=1004 op=1 SRCH base="cn=monitor" scope=2 deref=0 filter="(objectClass=*)"
+                      2023-11-21T14:28:15.632277+01:00 parmenide slapd[1458]: conn=1004 op=1 SEARCH RESULT tag=101 err=0 qtime=0.000009 etime=0.000624 nentries=72 text=
+    
+      0.000009        2023-11-21T14:27:44.052925+01:00 parmenide slapd[1458]: conn=1001 op=0 BIND dn="cn=monitor" mech=SIMPLE bind_ssf=0 ssf=0
+                      2023-11-21T14:27:44.053036+01:00 parmenide slapd[1458]: conn=1001 op=0 RESULT tag=97 err=0 qtime=0.000009 etime=0.062078 text=
+    
+    # etime (s)       Operation
+    ------------      --------------------------------------------------------------
+      0.072056        2023-11-21T14:27:53.579730+01:00 parmenide slapd[1458]: conn=1002 op=1 SRCH base="cn=monitor" scope=2 deref=0 filter="(objectClass=*)"
+                      2023-11-21T14:27:53.651856+01:00 parmenide slapd[1458]: conn=1002 op=1 SEARCH RESULT tag=101 err=0 qtime=0.000009 etime=0.072056 nentries=72 text=
+   
+      0.065009        2023-11-21T14:28:40.161159+01:00 parmenide slapd[1458]: conn=1005 op=0 BIND dn="cn=monitor" mech=SIMPLE bind_ssf=0 ssf=0
+                      2023-11-21T14:28:40.161264+01:00 parmenide slapd[1458]: conn=1005 op=0 RESULT tag=97 err=0 qtime=0.000009 etime=0.065009 text=
+
 
 
 .. include:: download-scripts.rst
