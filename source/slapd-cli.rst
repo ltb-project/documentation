@@ -63,11 +63,15 @@ Action is a keyword between:
     :lloadstart: start the load-balancer
     :lloadstop: stop the load-balancer
     :lloadstatus: get the status of currently running load-balancer
+    :removeoldbackups: remove old configuration and data backup files (also done when calling backup and backupconfig actions)
 
 .. TIP::
    ``slapd-cli`` provides autocompletion with ``slapd-cli-prompt`` configuration file, which is deployed by default in OpenLDAP LTB packages.
    That way, you just have to use the tab key to find out the actions and autocomplete file names.
 
+.. NOTE::
+   This script uses the last modification time of files to know which one to restore or to remove. If you modify a file directly in the backup
+   directory, it will impact these actions.
 
 Installation of slapd-cli
 =========================
@@ -208,25 +212,29 @@ Following parameters are about other options for slapd launch:
 
 Following parameters are about backup and restore:
 
-+----------------------------+--------------------------------------------------------------------------------------------+
-| Parameter                  | Description                                                                                |
-+============================+============================================================================================+
-| ``BACKUP_AT_SHUTDOWN``     | Do a backup data when slapd is stopped                                                     |
-+----------------------------+--------------------------------------------------------------------------------------------+
-| ``BACKUP_PATH``            | Backup folder                                                                              |
-+----------------------------+--------------------------------------------------------------------------------------------+
-| ``BACKUP_SUFFIX``          | Backup file suffix                                                                         |
-+----------------------------+--------------------------------------------------------------------------------------------+
-| ``BACKUP_COMPRESS_EXT``    | Extension of LDIF compressed file. No compression is done if this is empty                 |
-+----------------------------+--------------------------------------------------------------------------------------------+
-| ``BACKUP_COMPRESS_BIN``    | Binary used to compress LDIF file                                                          |
-+----------------------------+--------------------------------------------------------------------------------------------+
-| ``BACKUP_UNCOMPRESS_BIN``  | Binary used to uncompress LDIF file                                                        |
-+----------------------------+--------------------------------------------------------------------------------------------+
-| ``UMASK``                  | command used for running ``umask``                                                         |
-+----------------------------+--------------------------------------------------------------------------------------------+
-| ``MASK``                   | mask used for computing unix permissions while backuping                                   |
-+----------------------------+--------------------------------------------------------------------------------------------+
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| Parameter                            | Description                                                                                |
++======================================+============================================================================================+
+| ``BACKUP_AT_SHUTDOWN``               | Do a backup data when slapd is stopped                                                     |
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_PATH``                      | Backup folder                                                                              |
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_SUFFIX``                    | Backup file suffix                                                                         |
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_COMPRESS_EXT``              | Extension of LDIF compressed file. No compression is done if this is empty                 |
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_COMPRESS_BIN``              | Binary used to compress LDIF file                                                          |
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_UNCOMPRESS_BIN``            | Binary used to uncompress LDIF file                                                        |
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_CONFIG_DELETE_AFTER_DAYS``  | Maximum days to keep a configuration backup file                                           |
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| ``BACKUP_DATA_DELETE_AFTER_DAYS``    | Maximum days to keep a data backup file                                                    |
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| ``UMASK``                            | command used for running ``umask``                                                         |
++--------------------------------------+--------------------------------------------------------------------------------------------+
+| ``MASK``                             | mask used for computing unix permissions while backuping                                   |
++--------------------------------------+--------------------------------------------------------------------------------------------+
 
 Following parameters are about data provisioning:
 
