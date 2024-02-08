@@ -72,7 +72,7 @@ To import this key:
 For EL9
 ~~~~~~~
 
-The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-PROJECT-SECURITY>`_.
+The public key can be downloaded here: `GPG security key <_static/RPM-GPG-KEY-LTB-PROJECT-SECURITY>`_.
 
 To import this key:
 
