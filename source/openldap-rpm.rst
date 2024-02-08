@@ -58,6 +58,9 @@ Configure the yum repository:
 Import GPG key
 --------------
 
+For EL7 and EL8
+~~~~~~~~~~~~~~~
+
 The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
 
 To import this key:
@@ -65,6 +68,17 @@ To import this key:
 .. code-block:: console
 
     # rpm --import https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project
+
+For EL9
+~~~~~~~
+
+The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-PROJECT-SECURITY>`_.
+
+To import this key:
+
+.. code-block:: console
+
+    # rpm --import https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-PROJECT-SECURITY
 
 Install packages
 ----------------
