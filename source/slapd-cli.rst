@@ -342,31 +342,42 @@ Run several OpenLDAP instances
 
 You can run several OpenLDAP daemons on the same server.
 
-Copy systemd script:
+Choose an instance name. 
+
+Link slapd-cli command: (replace <instance> by your instance name)
 
 .. code-block:: console
 
-   # cp /lib/systemd/system/slapd-ltb.service /lib/systemd/system/slapd2-ltb.service
+    # ln -s /usr/local/openldap/sbin/slapd-cli /usr/local/openldap/sbin/slapd-<instance>-cli
 
-Change ``PIDFile``, ``ExecStart``, ``ExecRestart``, ``ExecStop`` values:
-
-.. code-block:: console
-
-   PIDFile=/usr/local/openldap/var/run/slapd2.pid
-   ExecStart=/usr/local/openldap/sbin/slapd2-cli start
-   ExecRestart=/usr/local/openldap/sbin/slapd2-cli restart
-   ExecStop=/usr/local/openldap/sbin/slapd2-cli stop
-
-Link slapd-cli command:
+Copy slapd-cli configuration file: (replace <instance> by your instance name)
 
 .. code-block:: console
 
-    # ln -s /usr/local/openldap/sbin/slapd-cli /usr/local/openldap/sbin/slapd2-cli
+   # cp /usr/local/openldap/etc/openldap/slapd-cli.conf /usr/local/openldap/etc/openldap/slapd-<instance>-cli.conf
 
-Copy and edit slapd-cli configuration to change at least the ports and PID file:
+Edit new ``slapd-<instance>-cli.conf`` and change at least the following parameters:
+
+* ``PORT`` and ``SSLPORT``
+* ``SLAPD_PID_FILE`` must be changed to: ``/usr/local/openldap/var/run/slapd-<instance>.pid``. Take care to also change the PID file into OpenLDAP configuration (parameter olcPidFile)
+* ``SLAPD_CONF_DIR`` or ``SLAPD_CONF`` to a specific configuration directory or file. Typically, for a directory: ``SLAPD_CONF_DIR="/usr/local/openldap/etc/openldap/slapd.d-<instance>"``
+* ``SYSTEMD_SERVICE_NAME`` to ``slapd-<instance>-ltb`` (and optionnally ``SYSTEMD_LLOAD_SERVICE_NAME`` to ``lload-<instance>-ltb``)
+* ``BACKUP_PATH`` to a dedicated backup directory: ``/var/backups/openldap-<instance>``
+
+
+Run the openldap instance with: (replace <instance> by your instance name)
 
 .. code-block:: console
 
-   # cp /usr/local/openldap/etc/openldap/slapd-cli.conf /usr/local/openldap/etc/openldap/slapd2-cli.conf
+   # systemctl start slapd-ltb@<instance>.service
 
+
+You can also use the cli for running any command on the new instance:
+
+.. code-block:: console
+
+   # slapd-instance-cli backupconfig
+   slapd-instance-cli: [INFO] Using /usr/local/openldap/etc/openldap/slapd-instance-cli.conf for configuration
+   slapd-instance-cli: [INFO] Launching OpenLDAP configuration backup...
+   slapd-instance-cli: [OK] Configuration saved in /var/backups/openldap-instance/config-20240523174022.ldif
 
