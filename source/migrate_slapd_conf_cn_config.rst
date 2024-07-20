@@ -14,7 +14,7 @@ Assumptions:
 
 1. Stop OpenLDAP::
 
-    systemctl stop slapd
+    systemctl stop slapd-ltb
 
 2. Create cn=config directory::
 
@@ -40,6 +40,6 @@ You should replace the argument: ``-f <SLAPD_CONF>`` by ``-F <SLAPD_CONF_DIR>``
 
 5. Start OpenLDAP::
 
-    systemctl slapd start
+    systemctl start slapd-ltb
 
 
