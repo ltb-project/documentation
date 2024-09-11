@@ -148,7 +148,13 @@ Following parameters are about network:
 +----------------------------+--------------------------------------------------------------------------------------------+
 | ``LDAPI_SOCKETURL``        | LDAPI socket URL (URL encoded value)                                                       |
 +----------------------------+--------------------------------------------------------------------------------------------+
-| ``SLAPD_SERVICES``         | list of listen LDAP URIs, space-separated. It is made of all previous variables.           |
+| ``LDAPI_SOCKETMODE``       | Mode for LDAPI socket (by default ``777``)                                                 |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LDAPI_SOCKETUSER``       | Owner user of LDAPI socket                                                                 |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``LDAPI_SOCKETGROUP``      | Owner group of LDAPI socket                                                                |
++----------------------------+--------------------------------------------------------------------------------------------+
+| ``SLAPD_SERVICES``         | List of listen LDAP URIs, space-separated. It is made of all previous variables.           |
 |                            | This parameter is corresponding to ``-h`` option in slapd launch command.                  |
 +----------------------------+--------------------------------------------------------------------------------------------+
 
