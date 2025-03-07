@@ -31,7 +31,7 @@ Configure the yum repository:
 
 .. code-block:: console
 
-    # vi /etc/yum.repos.d/ltb-project.repo
+    # vi /etc/yum.repos.d/ltb-project-openldap.repo
 
 * For OpenLDAP 2.5:
 

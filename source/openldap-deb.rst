@@ -55,7 +55,7 @@ Configure the repository:
 
 .. code-block:: console
 
-    # vi /etc/apt/sources.list.d/ltb-project.list
+    # vi /etc/apt/sources.list.d/ltb-project-openldap.list
 
 * For OpenLDAP 2.5:
 
