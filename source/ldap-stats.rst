@@ -5,7 +5,7 @@ OpenLDAP statistics
 Presentation
 ============
 
-The ``ldap-stats.pl`` script will parse OpenLDAP log files and print some statistics:
+The ``ldap-stats.pl`` script will parse OpenLDAP or SunDS log files and print some statistics:
 
      * Total operations
      * Total connections
@@ -58,7 +58,9 @@ Options:
 
 -s                       Split attributes found used in searches
 -D                       Use RFC5424 date format
+--log24                  Use OpenLDAP 2.4 log format
 --log26                  Use OpenLDAP 2.6 log format
+--sunds                  Use SunDS log format
 
 Sample output
 =============
