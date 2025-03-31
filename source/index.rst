@@ -64,6 +64,7 @@ Presentation
    openldap_ssl_tls_mutual_authentication
    migrate_openldap_ltb_24_openldap_ltb_25
    haproxy_openldap_proxy_protocol
+   meta_directory_rwm_overlay
 
 
 .. toctree::
