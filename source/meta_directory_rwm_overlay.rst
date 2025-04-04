@@ -197,7 +197,7 @@ To deal with this issue, we are using the rwm overlay declared before any backen
     # Prefix the string to search by the binddn who has connected previously
     rewriteRule "(.*)" "${**binddn}<>$1" ":I"
     # If binddn starts by srv1, remove binddn prefix from string and rewrite suffix to directory1
-    rewriteRule "^uid=srv[^,]+,[^<]+<>(.*)dc=domain,dc=com(.*)$" "$1dc=directory1,dc=domain,dc=com$2" ":@I"
+    rewriteRule "^uid=srv1[^,]+,[^<]+<>(.*)dc=domain,dc=com(.*)$" "$1dc=directory1,dc=domain,dc=com$2" ":@I"
     # If binddn not found or does not start by srv1, remove binddn prefix from string and rewrite suffix to directory2
     rewriteRule "^.*<>(.*)dc=domain,dc=com(.*)$" "$1dc=directory2,dc=domain,dc=com$2" ":@I"
     rewriteRule "^.*<>(.*)$" "$1" ":@I"
@@ -212,7 +212,10 @@ To deal with this issue, we are using the rwm overlay declared before any backen
     suffix        "dc=domain,dc=com"
 
     uri           "ldap://127.0.0.1:3390/dc=directory1,dc=domain,dc=com"
+    suffixmassage "dc=directory1,dc=domain,dc=com" "dc=ldap1,dc=com"
+
     uri           "ldap://127.0.0.1:3391/dc=directory2,dc=domain,dc=com"
+    suffixmassage "dc=directory2,dc=domain,dc=com" "dc=ldap2,dc=com"
 
 
 After the declaration of rwm overlay, the configuration is splitted in 3 sections:
