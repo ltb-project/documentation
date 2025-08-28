@@ -9,20 +9,25 @@ Installation
 Import GPG key
 --------------
 
-The public key can be downloaded here: `GPG key <_static/RPM-GPG-KEY-LTB-project>`_.
+
+.. Important::
+    The GPG key for debian has been updated on August 2025. Take care to use the new one by following the instructions below.
+
+
+The public key can be downloaded here: `GPG key <_static/ltb-project-debian-keyring.gpg>`_.
 
 To import this key:
 
 .. code-block:: console
 
     # apt install curl gpg
-    # curl https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project | gpg --dearmor > /usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg
+    # curl https://ltb-project.org/documentation/_static/ltb-project-debian-keyring.gpg | gpg --dearmor > /usr/share/keyrings/ltb-project-debian-keyring.gpg
 
 
 .. tip::
     On old systems, you can also use `apt-key` command::
 
-    # curl https://ltb-project.org/documentation/_static/RPM-GPG-KEY-LTB-project | apt-key add -
+    # curl https://ltb-project.org/documentation/_static/ltb-project-debian-keyring.gpg | apt-key add -
 
 
 .. _declare-apt-repository:
@@ -36,7 +41,7 @@ Declare APT repository
     * buster (debian 10)
     * bullseye (debian 11)
     * bookworm (debian 12)
-    * trixie (debian 13) (sid)
+    * trixie (debian 13)
     * jammy (ubuntu 22.04 LTS)
 
     Note: For other Ubuntu systems you can check which Debian release to choose in /etc/debian_version
@@ -61,21 +66,21 @@ Configure the repository:
 
 .. tip::
 
-    Available distributions are ``buster``, ``bullseye``, ``bookworm``, ``trixie`` and ``jammy``. Here is the configuration for ``bookworm``.
+    Available distributions are ``buster``, ``bullseye``, ``trixie``, ``trixie`` and ``jammy``. Here is the configuration for ``trixie``.
 
 ::
 
-    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/openldap25/bookworm bookworm main
+    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-debian-keyring.gpg] https://ltb-project.org/debian/openldap25/trixie trixie main
 
 * For OpenLDAP 2.6:
 
 .. tip::
 
-    Available distributions are ``buster``, ``bullseye``, ``bookworm``, ``trixie`` and ``jammy``. Here is the configuration for ``bookworm``.
+    Available distributions are ``buster``, ``bullseye``, ``trixie``, ``trixie`` and ``jammy``. Here is the configuration for ``trixie``.
 
 ::
 
-    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-openldap-archive-keyring.gpg] https://ltb-project.org/debian/openldap26/bookworm bookworm main
+    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-debian-keyring.gpg] https://ltb-project.org/debian/openldap26/trixie trixie main
 
 Then update:
 
