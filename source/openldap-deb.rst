@@ -23,6 +23,8 @@ To import this key:
     # apt install curl gpg
     # curl https://ltb-project.org/documentation/_static/ltb-project-debian-keyring.gpg | gpg --dearmor > /usr/share/keyrings/ltb-project-debian-keyring.gpg
 
+.. tip::
+    On debian 12, in order to install **gpg**, replace *gpg* by *gnupg2* in the previous *apt install* command.
 
 .. tip::
     On old systems, you can also use `apt-key` command::
