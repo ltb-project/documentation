@@ -62,27 +62,11 @@ Configure the repository:
 
     # vi /etc/apt/sources.list.d/ltb-project-openldap.sources
 
-* For OpenLDAP 2.5:
-
 .. tip::
 
-    Available distributions are ``buster``, ``bullseye``, ``trixie``, ``trixie`` and ``jammy``. Here is the configuration for ``trixie``.
+    Available distributions are ``buster``, ``bullseye``, ``bookworm``, ``trixie`` and ``jammy``. Here is the configuration for ``trixie``.
 
-.. code-block:: ini
-
-    Types: deb
-    URIs: https://ltb-project.org/debian/openldap25/trixie
-    Suites: trixie
-    Components: main
-    Signed-By: /usr/share/keyrings/ltb-project-debian-keyring.gpg
-    Architectures: amd64
-
-
-* For OpenLDAP 2.6:
-
-.. tip::
-
-    Available distributions are ``buster``, ``bullseye``, ``trixie``, ``trixie`` and ``jammy``. Here is the configuration for ``trixie``.
+    You can also replace ``openldap26`` by ``openldap25`` for OpenLDAP 2.5.X version.
 
 .. code-block:: ini
 
