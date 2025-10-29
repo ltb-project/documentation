@@ -60,7 +60,7 @@ Configure the repository:
 
 .. code-block:: console
 
-    # vi /etc/apt/sources.list.d/ltb-project-openldap.list
+    # vi /etc/apt/sources.list.d/ltb-project-openldap.sources
 
 * For OpenLDAP 2.5:
 
@@ -68,9 +68,15 @@ Configure the repository:
 
     Available distributions are ``buster``, ``bullseye``, ``trixie``, ``trixie`` and ``jammy``. Here is the configuration for ``trixie``.
 
-::
+.. code-block:: ini
 
-    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-debian-keyring.gpg] https://ltb-project.org/debian/openldap25/trixie trixie main
+    Types: deb
+    URIs: https://ltb-project.org/debian/openldap25/trixie
+    Suites: trixie
+    Components: main
+    Signed-By: /usr/share/keyrings/ltb-project-debian-keyring.gpg
+    Architectures: amd64
+
 
 * For OpenLDAP 2.6:
 
@@ -78,9 +84,20 @@ Configure the repository:
 
     Available distributions are ``buster``, ``bullseye``, ``trixie``, ``trixie`` and ``jammy``. Here is the configuration for ``trixie``.
 
-::
+.. code-block:: ini
 
-    deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-debian-keyring.gpg] https://ltb-project.org/debian/openldap26/trixie trixie main
+    Types: deb
+    URIs: https://ltb-project.org/debian/openldap26/trixie
+    Suites: trixie
+    Components: main
+    Signed-By: /usr/share/keyrings/ltb-project-debian-keyring.gpg
+    Architectures: amd64
+
+.. note::
+
+    You can also use the old-style source.list format. For example, for OpenLDAP 2.6 and Debian Trixie, edit ``ltb-project-openldap.list`` and add::
+
+        deb [arch=amd64 signed-by=/usr/share/keyrings/ltb-project-debian-keyring.gpg] https://ltb-project.org/debian/openldap26/trixie trixie main
 
 Then update:
 
