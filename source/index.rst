@@ -32,6 +32,7 @@ Presentation
    openldap-packages
    openldap-rpm
    openldap-deb
+   openldap-upgrade
    slapd-cli
    ansible-role
 
@@ -61,8 +62,9 @@ Presentation
    sasl_delegation
    remoteauth_delegation
    migrate_slapd_conf_cn_config
-   openldap_ssl_tls_mutual_authentication
    migrate_openldap_ltb_24_openldap_ltb_25
+   migrate_openldap_ltb_25_openldap_ltb_26
+   openldap_ssl_tls_mutual_authentication
    haproxy_openldap_proxy_protocol
    meta_directory_rwm_overlay
 
