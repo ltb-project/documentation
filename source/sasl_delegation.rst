@@ -171,6 +171,13 @@ The communication between the two daemons are done through a mutex, configured l
     pwcheck_method: saslauthd
     saslauthd_path: /var/run/saslauthd/mux
 
+Make sure the configuration is readable to find the mutex path:
+
+::
+
+    chmod g+r /usr/lib/sasl2/slapd.conf
+    chgrp ldap /usr/lib/sasl2/slapd.conf
+
 Add OpenLDAP user to sasl group (adapt names to your distribution settings, for example ``saslauth`` for RHEL)::
 
     usermod -a -G sasl ldap
