@@ -66,7 +66,7 @@ Configure the repository:
 
     Available distributions are ``buster``, ``bullseye``, ``bookworm``, ``trixie`` and ``jammy``. Here is the configuration for ``trixie``.
 
-    You can also replace ``openldap26`` by ``openldap25`` for OpenLDAP 2.5.X version.
+    You can also replace ``openldap26`` by ``openldap27`` for OpenLDAP feature release (may be unstable) or ``openldap25`` for old unmaintained release.
 
 .. code-block:: ini
 
