@@ -42,6 +42,7 @@ Declare APT repository
     * bullseye (debian 11)
     * bookworm (debian 12)
     * trixie (debian 13)
+    * forky (debian 14)
     * jammy (ubuntu 22.04 LTS)
 
     Note: For other Ubuntu systems you can check which Debian release to choose in /etc/debian_version
@@ -64,7 +65,7 @@ Configure the repository:
 
 .. tip::
 
-    Available distributions are ``buster``, ``bullseye``, ``bookworm``, ``trixie`` and ``jammy``. Here is the configuration for ``trixie``.
+    Available distributions are ``buster``, ``bullseye``, ``bookworm``, ``trixie``, ``forky`` and ``jammy``. Here is the configuration for ``trixie``.
 
     You can also replace ``openldap26`` by ``openldap27`` for OpenLDAP feature release (may be unstable) or ``openldap25`` for old unmaintained release.
 
