@@ -11,7 +11,8 @@ The script ``slapd-cli`` provide start, stop and other commands for OpenLDAP dae
     * Awk, for regular expression management
     * OpenLDAP, for save, index,... tools
 
-It must be launched using the root user, via a ``sudo -i slapd-cli`` command.
+.. NOTE::
+    It must be launched using the root user, via a ``sudo -i slapd-cli`` command.
 
 Configuration of this script can be done in an external file, with the same name as the slapd-cli program
 
@@ -35,7 +36,7 @@ Usage of slapd-cli
 
 The script can be launched like this::
 
-    sudo -i slapd-cli action [optional arguments]
+    Slapd-cli action [optional arguments]
 
 .. TIP::
    In OpenLDAP LTB packages, the script is available in ``/usr/local/openldap/sbin/slapd-cli``.
@@ -384,7 +385,7 @@ You can also use the cli for running any command on the new instance:
 
 .. code-block:: console
 
-   # sudo -i slapd-instance-cli backupconfig
+   # slapd-instance-cli backupconfig
    slapd-instance-cli: [INFO] Using /usr/local/openldap/etc/openldap/slapd-instance-cli.conf for configuration
    slapd-instance-cli: [INFO] Launching OpenLDAP configuration backup...
    slapd-instance-cli: [OK] Configuration saved in /var/backups/openldap-instance/config-20240523174022.ldif
