@@ -36,7 +36,7 @@ Usage of slapd-cli
 
 The script can be launched like this::
 
-    Slapd-cli action [optional arguments]
+    slapd-cli action [optional arguments]
 
 .. TIP::
    In OpenLDAP LTB packages, the script is available in ``/usr/local/openldap/sbin/slapd-cli``.
