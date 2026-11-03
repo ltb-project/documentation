@@ -11,6 +11,9 @@ The script ``slapd-cli`` provide start, stop and other commands for OpenLDAP dae
     * Awk, for regular expression management
     * OpenLDAP, for save, index,... tools
 
+.. NOTE::
+    It must be launched using the root user, via a ``sudo -i slapd-cli`` command.
+
 Configuration of this script can be done in an external file, with the same name as the slapd-cli program
 
 The main features are:
